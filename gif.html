@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea tu Gif!</title>
+    <script src="https://kit.fontawesome.com/a92d32d912.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles css/style.css">
+</head>
+<body>
+    <header>
+    <p class="texto_inicio">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: 12.765.803</p>
+    </header>
+         <div class="margenes-gif">
+        <section class="botones-y-logo">
+            <div class="imagen_logo">
+                <ul class="flecha-volver">
+                    <li><a class="fas fa-arrow-left" href="Index.html"></a></li>
+                </ul>
+                <div class="img_logo" id="logo_azul">
+                              
+                </div>
+                 
+            </div> 
+        </section>
+   
+        <section class="crear-gif">
+            <div class="contenedor-creador">
+                 <div class="contenedor-gradiente-gif">
+                     <p class="gradiente_gif">Crear Guifos</p>
+                </div>
+                <div class="fondo-gris" id="caja-fondo-gris">
+                    <div id="eliminar-caja" class="eliminar-caja">
+                    <div class="contenedor-logo-texto-cuadrado" id="caja-de-crear-gif">
+                        <img src="./imagenes/window img.png" alt="window imagen" class="logo-cuadrado"><p class="propios-gif">Aquí podrás crear tus propios guifos</p>
+                    </div>
+                    <div class="texto-de-crear-gif">
+                        <p>Crear tu guifo es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:</p>
+                            <ul class="lista-crear-tus-propios-gif">
+                             <li>1) Dar permisos de acceso a la cámara (sólo por el tiempo de uso)</li>
+                             <li>2) Capturar tu momento guifo</li>
+                             <li>3) Revisar el momento</li>
+                             <li> 4) Listo para subir y compartir!</li>
+                            </ul>
+                           <p>¿Quieres comenzar a crear tu guifo ahora?</p>
+                           
+                          
+                           
+                            </div>
+                        <div class="botones-de-comenzar-y-cancelar"> 
+                            <a href="Index.html"  class="cancelar">Cancelar</a>
+                            <button class="comenzar" id="boton-comenzar">Comenzar</button>
+                        </div>    
+                    </div>
+                    <div class="muestra-de-camara" id="primer-camara">
+                    <div>
+                    <video id="video" class="pantalla-video"></video>
+                     <img alt="no video preview" id="preview" class="video-preview"></img>
+                    </div>
+                    <div class="caja_boton_capturar" id="caja-del-boton-capturar">
+                    <button class="capturar" id="boton-capturar"><img src="./imagenes/camera.svg"> Capturar</button></div>
+                     </div>
+                     <div class="caja_boton_grabar" id="caja-del-boton-grabar">
+                        <div id="contador" class="contador-numero"></div>
+                        <button class="grabar" id="boton-grabar"><img class="imagen_grabar" src="./imagenes/recording.svg">Listo</button></div>
+                        
+                         <div class="subir-gif" id="caja-subir-gif"> 
+                             <button type="button" id="subir" class="boton-subir-gif">subir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+       
+       </section>
+                
+       
+                </div>
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+ 
+    <script src="./scripts/script-gif.js"></script>
+</body>
+</html>
