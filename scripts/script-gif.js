@@ -148,39 +148,34 @@ async function subirVideo() {
   ids.push(id);
 
   localStorage.setItem("my_gifs", JSON.stringify(ids))
+
   function move() {
     var elem = document.getElementById("myBar");
     var width = 10;
     var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-      } else {
-        width++;
-        elem.style.width = width + '%';
-        // document.getElementById("label").innerHTML = width * 1 + '%';
-      }
-    }
   } move()
 }
 
 async function mis_gifos() {
-  let idsLS = localStorage.getItem("my_gifs")
-  let id = JSON.parse(idsLS)
-  let idsstring = ""
-  id.forEach(item => idsstring += item + ",")
+  if (localStorage.getItem("my_gifs")) {
+    let idsLS = localStorage.getItem("my_gifs")
+    var id = JSON.parse(idsLS)
+    let idsstring = ""
+    id.forEach(item => idsstring += item + ",")
 
-  var mis_gifs = await fetch(`https://api.giphy.com/v1/gifs?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&ids=$${id}`)
-
+    var mis_gifs = await fetch(`https://api.giphy.com/v1/gifs?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&ids=$${id}`)
+      
   let gif_por_id = await mis_gifs.json()
   console.log(gif_por_id)
   const element = gif_por_id.data;
   for (let i = 0; i < element.length; i++) {
     const element = gif_por_id.data[i];
     CONTENEDOR_MIS_GIFOS.innerHTML += `<img src="${element.images.original.url}" class="mis-gif-subidos">`
-    console.log(gif_por_id.data[i])
-  }
-} mis_gifos()
+    console.log(gif_por_id.data[i])}
+
+  } else {
+    alert("Bienvenido a gifos!")
+  }} mis_gifos()
 
 
 
