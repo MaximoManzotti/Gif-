@@ -9,7 +9,7 @@ const $BOTON_GRABAR = document.getElementById('boton-grabar');
 const $CAJA_SUBIR_GIF = document.getElementById('caja-subir-gif')
 const $CONTADOR = document.getElementById('contador')
 const CONTENEDOR_MIS_GIFOS = document.getElementById('contenedor-mis-gifos')
-
+const CONTENEDOR_SUBIENDO = document.getElementById('id-caja-subiendo')
 if (localStorage.getItem("tema") === "Tema-Oscuro") {
 
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo_dark.png)")
@@ -62,7 +62,7 @@ $BOTON_CAPTURAR.addEventListener('click', function () {
   }, 1000);
 })
 
-var videoPreview = document.getElementById("preview")
+const videoPreview = document.getElementById("preview")
 $BOTON_GRABAR.onclick = function () {
   recorder.stopRecording();
   video.innerHTML = `<style>.video-preview{display:flex} .pantalla-video{display: none;}</style>`;
@@ -125,7 +125,12 @@ var buttonSubir = document.getElementById("subir")
 
 
 buttonSubir.onclick = subirVideo;
+
+
 async function subirVideo() {
+  $CAJA_SUBIR_GIF.style.setProperty("display", "none")
+  CONTENEDOR_SUBIENDO.style.setProperty("display", "grid")
+  videoPreview.style.setProperty("display", "none")
   var form = new FormData();
   form.append("file", blob, "file.gif")
   let post = await fetch("https://upload.giphy.com/v1/gifs?&api_key=igY9hZqLYu5goaPfGeVuhM8DmxXLxu3v", {
@@ -141,30 +146,42 @@ async function subirVideo() {
     ids = JSON.parse(idsLS)
   }
   ids.push(id);
+
   localStorage.setItem("my_gifs", JSON.stringify(ids))
+  function move() {
+    var elem = document.getElementById("myBar");
+    var width = 10;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+      } else {
+        width++;
+        elem.style.width = width + '%';
+        // document.getElementById("label").innerHTML = width * 1 + '%';
+      }
+    }
+  } move()
 }
 
 async function mis_gifos() {
   let idsLS = localStorage.getItem("my_gifs")
-  console.log(idsLS)
-  let string = idsLS.replace(/['"]+/g, '')
-  console.log(string.replace('[]', ''))
-  //  string.replace('[]', '')
-  let id = [string]
-  console.log(id)
-  string = string.split(",");
-  console.log(string)
-  var mis_gifs = await fetch(`https://api.giphy.com/v1/gifs?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&ids=$${string}`)
+  let id = JSON.parse(idsLS)
+  let idsstring = ""
+  id.forEach(item => idsstring += item + ",")
+
+  var mis_gifs = await fetch(`https://api.giphy.com/v1/gifs?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&ids=$${id}`)
 
   let gif_por_id = await mis_gifs.json()
   console.log(gif_por_id)
   const element = gif_por_id.data;
   for (let i = 0; i < element.length; i++) {
     const element = gif_por_id.data[i];
+    CONTENEDOR_MIS_GIFOS.innerHTML += `<img src="${element.images.original.url}" class="mis-gif-subidos">`
     console.log(gif_por_id.data[i])
-CONTENEDOR_MIS_GIFOS.innerHTML= `<div class="elemento">
-          <img src="${element.images.original.url}" class="gifos">
-          </div>`}
+  }
 } mis_gifos()
+
+
 
 
