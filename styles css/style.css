@@ -18,11 +18,16 @@
    --logo-azul:url(../imagenes/gifOF_logo.png);
 }
 body{
-  width: 100%;
+  width: 100% ;
+
 }
 .margenes{
-  margin-left: 4em;
-  margin-right: 4em;
+  margin-left: 4em !important;
+  margin-right: 4em !important;
+}
+.buscar{
+  color: var(--gris-lupa);
+  
 }
 .texto_inicio {
   bottom: 9px;
@@ -108,15 +113,15 @@ button:focus{
   grid-auto-flow: dense;
 }
 .gifos{
-  height: 340px;
-  width: 340px;
+  height: 280px;
+  width: 280px;
   border: outset;
   border-width: 2px 2px 2px 2px;
 }
 .gifos-2{
   
-  height: 340px;
-  width: 680px;
+  height: 280px;
+  width: 591px;
   border: outset;
   border-width: 2px 2px 2px 2px;
 
@@ -250,6 +255,7 @@ button:focus{
   background-color: var(--gris-claro);
   color: var(--fuente-clara);
   height: min-content ;
+  margin: 0px 6em;
  
 }
 .gradiente_buscador {
@@ -258,21 +264,34 @@ button:focus{
   width: 100%;
 }
 .buscador_gris { 
-  width: 30em;
-  margin-bottom: 1em;
-  margin-left: 1em;
-  border: inset;
-  height: 36px;
-  width: max-content;
-  font-size: 16px;
+
+    margin-bottom: 1em;
+    margin-left: 1em;
+    border: inset;
+    height: 36px;
+    font-size: 16px;
+    width: 90% !important;
    
 }
 .boton-lupa{
   display: inline-flex;
-  width: 6em;
-  height: 2em;
+  border: outset;
+  border-width: 1px;
+  border-color: black;
+  border-top: aliceblue;
+  box-shadow: 2px 2px black;
+  height: 25px;
+  width: fit-content;
+  margin: 0px;
+  padding: 0.3em 1em 0.24em 1em;
 }
-
+.cajagrisdesplegable{
+  background-color:var(--gris-claro);
+}
+.buscador__inputs {
+  display: flex;
+  justify-content: space-between;
+}
 .txt-hoy-te-sugerimos{
   font-family: 'Chakra Petch', sans-serif;
   background-color: var(--rosa-claro);;
@@ -289,6 +308,12 @@ button:focus{
   width:99.5%;
   margin-top: 3em;
 }
+section.Random{
+   margin: 0em 6em;
+}
+section.hoy-te-sugerimos {
+  margin: 0em 6em;
+}
 .Ver-mas{
   position: absolute;
   margin-left: 0.5em;
@@ -297,7 +322,9 @@ button:focus{
   color: var(--texto-claro);
   font-family: 'ChakraPetch Regular';
   bottom: 17%;
-
+}
+.Ver-mas:focus{
+  outline: none;
 }
 .titulo-x{
   display: flex;
@@ -393,7 +420,7 @@ button:focus{
    height: 36px;
    margin-left: 16px;
    font-size: 16px;
-   font-family: ChakraPetch-Regular;
+   font-family: 'ChakraPetch Regular';
    color:var(--fuente-clara);
    border: groove;
    border-width: 1px;
@@ -403,7 +430,7 @@ button:focus{
  .cancelar{
   background-color: var(--rosa-claro);
   width: 143px;
-  font-family: ChakraPetch-Regular;
+  font-family: 'ChakraPetch Regular';
   color: var(--fuente-clara);
   border: groove;
   border-width: 1px;
@@ -420,7 +447,7 @@ button:focus{
    height: 36px;
    margin-left: 16px;
    font-size: 16px;
-   font-family: ChakraPetch-Regular;
+   font-family: 'ChakraPetch Regular';
    color:var(--fuente-clara);
    border: groove;
    border-width: 1px;
@@ -447,7 +474,7 @@ button:focus{
   height: 27px;
   margin-left: 16px;
   font-size: 16px;
-  font-family: ChakraPetch-Regular;
+  font-family: 'ChakraPetch Regular';
   color:var(--fuente-clara);
   border: outset;
   border-width:1px 0px 0px 1px;
@@ -487,7 +514,7 @@ button:focus{
 .boton-subir-gif{
   background-color: var(--rosa-claro);
   width: 143px;
-  font-family: ChakraPetch-Regular;
+  font-family: 'ChakraPetch Regular';
   color: var(--fuente-clara);
   border: groove;
   border-width: 1px;
@@ -501,13 +528,4 @@ button:focus{
   padding-bottom: 5px;
   margin-top: 0.5em;
   margin-right: 0.5em;
-}
- /*-------------------------------------*/
-@media  only screen and (min-device-width:768px){
-.buscador_gris{
-  width: 82%;
-}
-.lupa{
-  margin-left: 0px;
-}
 }

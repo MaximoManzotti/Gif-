@@ -98,8 +98,8 @@
             <div class="titulo-x"><p class="titulo-de-gif-con-x">#${sin_espacios}</p><button class="boton_con_x"><img src="./imagenes/close.svg" alt="x"</button></div>
             <img src="${element.images.original.url}" class="gifos">
            </div>
-           <div>
-           <button class="Ver-mas">Ver más…...</button>
+           <input class="Ver-mas" type="button" onclick="location.href='https://giphy.com/';" value="Ver más…..." />
+          
            </div>
     </div>`
      
@@ -148,9 +148,10 @@
         html += `
         <div class="elemento">
              <div> 
-                <p class="titulo-de-gif">#${element.title}</p>
+             <img src="${element.images.original.url}" class="gifos">
                 <div>
-                <img src="${element.images.original.url}" class="gifos">
+                
+                <p class="titulo-de-gif">#${element.title}</p>
                 </div>
              </div>
         </div>`
