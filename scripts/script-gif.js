@@ -12,6 +12,7 @@ const CONTENEDOR_MIS_GIFOS = document.getElementById('contenedor-mis-gifos')
 const CONTENEDOR_SUBIENDO = document.getElementById('id-caja-subiendo')
 const CAJAFINAL = document.getElementById('cajavideoybotonesfinal')
 const BOTON_FINAL = document.getElementById("botonesfinal")
+const BOTON_LISTO = document.getElementById("ready")
 
 
 if (localStorage.getItem("tema") === "Tema-Oscuro") {
@@ -33,6 +34,7 @@ BOTON_COMENZAR.addEventListener('click', function () {
   PRIMER_CAMARA.style.setProperty("display", "flex")
   PRIMER_CAMARA.style.setProperty("flex-direction", "column")
   BOTON_FINAL.style.setProperty("display", "none")
+  BOTON_LISTO.style.setProperty("display", "none")
 
 
 
@@ -165,6 +167,7 @@ async function subirVideo() {
       BOTON_FINAL.style.setProperty("flex-direction", "column")
       BOTON_FINAL.style.setProperty("margin-left", "13.5%")
       BOTON_FINAL.style.setProperty("margin-right", "13.5%")
+      BOTON_LISTO.style.setProperty("display", "grid")
     }
   } catch{
     alert("Ocurrio un error al subir el gif.")

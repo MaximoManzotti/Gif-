@@ -565,10 +565,10 @@ u{ text-decoration-line: line-through;}
 a.cancelar-subida {
   display: flex;
   color: var(--fuente-clara);
-  font-style: none;
-  list-style: none;
-  text-underline-position: none;
   text-decoration: none;
+  padding: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
   background: var(--fondo-claro);
 }
 .final-de-subida-botoncopiar{
@@ -604,4 +604,54 @@ a.cancelar-subida {
   padding-bottom: 5px;
   margin-top: 0.5em;
   margin-right: 0.5em;
+}
+.listo{
+  background-color: var(--rosa-claro);
+  margin-left: 16px;
+  font-size: 14px;
+  font-family: 'ChakraPetch Regular';
+  color: var(--fuente-clara);
+  border: groove;
+  border-width: 1px;
+  border-color: var(--negro);
+  text-decoration: none;
+  align-content: center;
+  padding: 0.4em;
+  justify-content: center;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.caja-listo{
+  justify-content: end;
+    align-content: end;
+    display: grid;
+    padding-right: 1em;
+}
+.caja-prefinalizacion{
+  display: flex;
+  flex-direction: column;
+}
+img.contenido-subiendo-globo {
+  width: fit-content;
+  align-content: center;
+  padding-left: 125px;
+}
+.texto-prefinalizacion{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  margin-left: 10em;
+  margin-right: 10em;
+  margin-top: 2em;
+}
+.caja-del-boton-cancelar {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 3em;
+  margin-left: 32em;
+}
+p.mis-gifos {
+  color: var(--fuente-clara);
 }
