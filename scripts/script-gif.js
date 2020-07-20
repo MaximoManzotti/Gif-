@@ -1,15 +1,19 @@
-const $BOTON_COMENZAR = document.getElementById('boton-comenzar');
-const $CAJA_FONDO_GRIS = document.getElementById('caja-fondo-gris');
-const $ELIMINAR_CAJA = document.getElementById('eliminar-caja');
-const $PRIMER_CAMARA = document.getElementById('primer-camara')
-const $BOTON_CAPTURAR = document.getElementById('boton-capturar');
-const $CAJA_BOTON_CAPTURAR = document.getElementById('caja-del-boton-capturar');
-const $CAJA_BOTON_GRABAR = document.getElementById('caja-del-boton-grabar');
-const $BOTON_GRABAR = document.getElementById('boton-grabar');
-const $CAJA_SUBIR_GIF = document.getElementById('caja-subir-gif')
-const $CONTADOR = document.getElementById('contador')
+const BOTON_COMENZAR = document.getElementById('boton-comenzar');
+const CAJA_FONDO_GRIS = document.getElementById('caja-fondo-gris');
+const ELIMINAR_CAJA = document.getElementById('eliminar-caja');
+const PRIMER_CAMARA = document.getElementById('primer-camara')
+const BOTON_CAPTURAR = document.getElementById('boton-capturar');
+const CAJA_BOTON_CAPTURAR = document.getElementById('caja-del-boton-capturar');
+const CAJA_BOTON_GRABAR = document.getElementById('caja-del-boton-grabar');
+const BOTON_GRABAR = document.getElementById('boton-grabar');
+const CAJA_SUBIR_GIF = document.getElementById('caja-subir-gif')
+const CONTADOR = document.getElementById('contador')
 const CONTENEDOR_MIS_GIFOS = document.getElementById('contenedor-mis-gifos')
 const CONTENEDOR_SUBIENDO = document.getElementById('id-caja-subiendo')
+const CAJAFINAL = document.getElementById('cajavideoybotonesfinal')
+const BOTON_FINAL = document.getElementById("botonesfinal")
+
+
 if (localStorage.getItem("tema") === "Tema-Oscuro") {
 
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo_dark.png)")
@@ -24,10 +28,12 @@ if (localStorage.getItem("tema") === "Tema-Oscuro") {
 
 }
 
-$BOTON_COMENZAR.addEventListener('click', function () {
-  $ELIMINAR_CAJA.style.setProperty("display", "none")
-  $PRIMER_CAMARA.style.setProperty("display", "flex")
-  $PRIMER_CAMARA.style.setProperty("flex-direction", "column")
+BOTON_COMENZAR.addEventListener('click', function () {
+  ELIMINAR_CAJA.style.setProperty("display", "none")
+  PRIMER_CAMARA.style.setProperty("display", "flex")
+  PRIMER_CAMARA.style.setProperty("flex-direction", "column")
+  BOTON_FINAL.style.setProperty("display", "none")
+
 
 
   navigator.mediaDevices.getUserMedia(
@@ -44,10 +50,10 @@ $BOTON_COMENZAR.addEventListener('click', function () {
     video.play();
   })
 })
-$BOTON_CAPTURAR.addEventListener('click', function () {
-  $CAJA_BOTON_CAPTURAR.style.setProperty("display", "none")
-  $CAJA_BOTON_GRABAR.style.setProperty("display", "flex")
-  $CAJA_SUBIR_GIF.style.setProperty("display", "none")
+BOTON_CAPTURAR.addEventListener('click', function () {
+  CAJA_BOTON_CAPTURAR.style.setProperty("display", "none")
+  CAJA_BOTON_GRABAR.style.setProperty("display", "flex")
+  CAJA_SUBIR_GIF.style.setProperty("display", "none")
   let n = 0;
   let m = 00;
   let l = document.getElementById("contador");
@@ -63,7 +69,7 @@ $BOTON_CAPTURAR.addEventListener('click', function () {
 })
 
 const videoPreview = document.getElementById("preview")
-$BOTON_GRABAR.onclick = function () {
+BOTON_GRABAR.onclick = function () {
   recorder.stopRecording();
   video.innerHTML = `<style>.video-preview{display:flex} .pantalla-video{display: none;}</style>`;
 
@@ -85,9 +91,9 @@ $BOTON_GRABAR.onclick = function () {
 
     }
   })
-  $CAJA_SUBIR_GIF.style.setProperty("display", "flex");
-  $BOTON_GRABAR.style.setProperty("display", "none")
-  $CONTADOR.style.setProperty("display", "none")
+  CAJA_SUBIR_GIF.style.setProperty("display", "flex");
+  BOTON_GRABAR.style.setProperty("display", "none")
+  CONTADOR.style.setProperty("display", "none")
 }
 
 function startRecording() {
@@ -113,7 +119,7 @@ navigator.mediaDevices.getUserMedia(
 
 
 
-  $BOTON_CAPTURAR.onclick = startRecording;
+  BOTON_CAPTURAR.onclick = startRecording;
   video.srcObject = mediaStream
   video.play();
 }).catch(function (err) {
@@ -128,7 +134,7 @@ buttonSubir.onclick = subirVideo;
 
 
 async function subirVideo() {
-  $CAJA_SUBIR_GIF.style.setProperty("display", "none")
+  CAJA_SUBIR_GIF.style.setProperty("display", "none")
   CONTENEDOR_SUBIENDO.style.setProperty("display", "grid")
   videoPreview.style.setProperty("display", "none")
   var form = new FormData();
@@ -142,18 +148,27 @@ async function subirVideo() {
   let ids = []
   let idsLS = localStorage.getItem("my_gifs")
   if (idsLS != null) {
-
     ids = JSON.parse(idsLS)
   }
   ids.push(id);
 
   localStorage.setItem("my_gifs", JSON.stringify(ids))
-
-  function move() {
-    var elem = document.getElementById("myBar");
-    var width = 10;
-    var id = setInterval(frame, 10);
-  } move()
+  let status = await (id_post.meta.status)
+  console.log(status)
+  try {
+    if (status === 200) {
+      videoPreview.style.setProperty("display", "flex")
+      videoPreview.style.setProperty("width", "50%")
+      CONTENEDOR_SUBIENDO.style.setProperty("display", "none")
+      CAJAFINAL.style.setProperty("display", "flex")
+      BOTON_FINAL.style.setProperty("display", "flex")
+      BOTON_FINAL.style.setProperty("flex-direction", "column")
+      BOTON_FINAL.style.setProperty("margin-left", "13.5%")
+      BOTON_FINAL.style.setProperty("margin-right", "13.5%")
+    }
+  } catch{
+    alert("Ocurrio un error al subir el gif.")
+  }
 }
 
 async function mis_gifos() {
@@ -164,18 +179,25 @@ async function mis_gifos() {
     id.forEach(item => idsstring += item + ",")
 
     var mis_gifs = await fetch(`https://api.giphy.com/v1/gifs?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&ids=$${id}`)
-      
-  let gif_por_id = await mis_gifs.json()
-  console.log(gif_por_id)
-  const element = gif_por_id.data;
-  for (let i = 0; i < element.length; i++) {
-    const element = gif_por_id.data[i];
-    CONTENEDOR_MIS_GIFOS.innerHTML += `<img src="${element.images.original.url}" class="mis-gif-subidos">`
-    console.log(gif_por_id.data[i])}
+
+
+    try {
+      var gif_por_id = await mis_gifs.json()
+      const element = gif_por_id.data;
+      for (let i = 0; i < element.length; i++) {
+        const element = gif_por_id.data[i];
+        CONTENEDOR_MIS_GIFOS.innerHTML += `<img src="${element.images.original.url}" class="mis-gif-subidos"> `
+        console.log(gif_por_id.data[i])
+      }
+
+    } catch (error) {
+      console, log("hay un error")
+    }
 
   } else {
     alert("Bienvenido a gifos!")
-  }} mis_gifos()
+  }
+} mis_gifos()
 
 
 

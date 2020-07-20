@@ -117,6 +117,8 @@ button:focus{
   width: 280px;
   border: outset;
   border-width: 2px 2px 2px 2px;
+
+
 }
 .gifos-2{
   
@@ -133,7 +135,6 @@ button:focus{
 .titulo-de-gif-con-x{
   margin: 0px;
   color:var(--texto-claro);
-  background:var(--gradiente);
   height: 1em;
  
 }
@@ -141,13 +142,16 @@ button:focus{
   margin: 0px;
   color: transparent;
   background:transparent;
-
-
+  position: absolute;
+  margin-top: -1.6em;
+  width: 14em;
 }
 .titulo-de-gif-2{
   margin: 0px;
   color: transparent;
   background:transparent;
+  position: absolute;
+  margin-top: -1.6em;
 
 }
 .elemento:hover .titulo-de-gif{
@@ -314,6 +318,9 @@ section.Random{
 section.hoy-te-sugerimos {
   margin: 0em 6em;
 }
+.grilla{
+  width: 284px;
+}
 .Ver-mas{
   position: absolute;
   margin-left: 0.5em;
@@ -330,10 +337,8 @@ section.hoy-te-sugerimos {
   display: flex;
   background: var(--gradiente);
   justify-content: space-between;
-  width: 340px;
- 
-
-}
+  width: 284px;
+};
 .boton_con_x{   
    padding: 0px;
   margin: 0px;
@@ -556,3 +561,47 @@ section.hoy-te-sugerimos {
   background-color: var(--rosa-claro);
 }
 u{ text-decoration-line: line-through;}
+
+a.cancelar-subida {
+  display: flex;
+  color: var(--fuente-clara);
+  font-style: none;
+  list-style: none;
+  text-underline-position: none;
+  text-decoration: none;
+  background: var(--fondo-claro);
+}
+.final-de-subida-botoncopiar{
+  background-color: var(--fondo-claro);
+  width: 159px;
+  font-family: 'ChakraPetch Regular';
+  color: var(--fuente-clara);
+  border: groove;
+  border-width: 1px;
+  align-content: center;
+  justify-content: center;
+  text-decoration: none;
+  border-color: var(--negro);
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+}
+.final-de-subida-botondescargar {
+  background-color: var(--fondo-claro);
+  width: 159px;
+  font-family: 'ChakraPetch Regular';
+  color: var(--fuente-clara);
+  border: groove;
+  border-width: 1px;
+  align-content: center;
+  justify-content: center;
+  text-decoration: none;
+  border-color: var(--negro);
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+}

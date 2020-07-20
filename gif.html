@@ -61,12 +61,23 @@
                     </div>
                     <div class="muestra-de-camara" id="primer-camara">
                         <div>
-                            <video id="video" class="pantalla-video"></video>
-                            <img alt="no video preview" id="preview" class="video-preview"></img>
+                            <div id="cajavideoybotonesfinal">
+                                <video id="video" class="pantalla-video"></video>
+                                <img alt="no video preview" id="preview" class="video-preview"></img>
+                                <div id="botonesfinal">
+                                    <p class="final-de-subida-texto">Guifo creado con éxito</p>
+                                    <button class="final-de-subida-botoncopiar">Copiar Enlace Guifo</button>
+                                    <button class="final-de-subida-botondescargar">Descargar Guifo</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="caja_boton_capturar" id="caja-del-boton-capturar">
-                            <button class="capturar" id="boton-capturar"><img src="./imagenes/camera.svg">
-                                Capturar</button></div>
+                            <button class="capturar" id="boton-capturar">
+                                <img src="./imagenes/camera.svg">
+                                Capturar
+                            </button>
+
+                        </div>
                     </div>
                     <div class="caja_boton_grabar" id="caja-del-boton-grabar">
                         <div id="contador" class="contador-numero"></div>
@@ -78,15 +89,18 @@
                         <button type="button" id="subir" class="boton-subir-gif">subir</button>
                     </div>
                     <div class="caja-subiendo" id="id-caja-subiendo">
-                        <img class="contenido-subiendo-globo" src="./imagenes/globe_img.png" alt="globo">
-                        <p class="contenido-subiendo">Estamos subiendo tu guifo…</p>
                         <div>
-                            <p class="contenido-subiendo">Tiempo restante:</p> <U class="contenido-subiendo"> 38
-                                años</U>
-                            <p class="contenido-subiendo"> algunos minutos</p>
+                            <img class="contenido-subiendo-globo" src="./imagenes/globe_img.png" alt="globo">
+                            <p class="contenido-subiendo">Estamos subiendo tu guifo…</p>
+                            <div>
+                                <p class="contenido-subiendo">Tiempo restante:</p> <U class="contenido-subiendo"> 38
+                                    años</U>
+                                <p class="contenido-subiendo"> algunos minutos</p>
+                            </div>
                         </div>
-                        <a href="./gif.html" class="cancelar-subida">Cancelar</a>
-                        href="./gif.html"
+                        <div class="caja-del-boton-cancelar">
+                            <a type="button" href="./Index.html" class="cancelar-subida">Cancelar</a>
+                        </div>
                     </div>
                 </div>
 
