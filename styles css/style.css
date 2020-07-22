@@ -11,8 +11,10 @@
   --gris-claro:#E6E6E6;
   --gris-lupa:#B4B4B4;
   --rojo-grabar:#FF6161;
+  --boton-sugerido:#F0F0F0 100%;
   background: (var(--fondo-claro));
-
+  --boton-nigth:#F0F0F0;
+  --boton-day:#FFF4FD;
   overflow-y: scroll;
    overflow-x: hidden;
    --logo-azul:url(../imagenes/gifOF_logo.png);
@@ -93,10 +95,6 @@ button:focus{
   
   text-decoration: none;
   color: var(--fuente-clara);
-      
-  
- 
-
 }
 .boton-crear:hover{
  border: dashed;
@@ -209,6 +207,34 @@ button:focus{
   border: dashed;
   border-width: 1px;
 }
+.sailor-day{
+  border: groove;
+  border-width: 1px;
+  border-color:white black black black;
+  background:var(--boton-day) !important;
+  color: var(--fuente-clara);
+  padding: 0.4em 1em 0.4em 1em;
+  height: 29px;
+  width: 139px;
+  margin: 0px;
+  margin: 4px;
+  padding: 0.3em 1em 0.24em 1em;
+}
+.sailor-night{
+  border: groove;
+  border-width: 1px;
+  border-color:white black black black;
+  color: var(--fuente-clara);
+  padding: 0.4em 1em 0.4em 1em;
+  height: 29px;
+  width: 139px;
+  margin: 0px;
+  margin: 4px;
+  padding: 0.3em 1em 0.24em 1em;
+  background-color:var(--boton-nigth);
+}
+
+
  .flecha {
   text-decoration: none;
   list-style: none;
@@ -221,7 +247,7 @@ button:focus{
   border-color: black;
 }
 .menu_desplegable {
-  BACKGROUND-COLOR: var(--gris-lupa) ;
+  BACKGROUND-COLOR: var(--boton-sugerido) ;
   width: 8.7em;
   margin: 0px 0px 0px 1em;
 }
@@ -256,7 +282,7 @@ button:focus{
   color: var(--gris-claro);
 }
 .buscador {
-  background-color: var(--gris-claro);
+  background-color: var(--boton-sugerido);
   color: var(--fuente-clara);
   height: min-content ;
   margin: 0px 6em;
@@ -274,23 +300,20 @@ button:focus{
     border: inset;
     height: 36px;
     font-size: 16px;
-    width: 90% !important;
+    width: 100% !important;
+    font-family: ChakraPetch-Regular;
    
 }
 .boton-lupa{
   display: inline-flex;
-  border: outset;
-  border-width: 1px;
-  border-color: black;
-  border-top: aliceblue;
-  box-shadow: 2px 2px black;
   height: 25px;
   width: fit-content;
-  margin: 0px;
-  padding: 0.3em 1em 0.24em 1em;
-}
-.cajagrisdesplegable{
-  background-color:var(--gris-claro);
+  margin: 0.6em 3em 0px 0.6em;
+  padding: 0.3em 1em 0.24em;
+  border: solid;
+  border-width: 2px 1px 1px 1px;
+  border-color: #808080 #808080 #808080 white;
+  background-color: var(--boton-sugerido);
 }
 .buscador__inputs {
   display: flex;
@@ -328,7 +351,7 @@ section.hoy-te-sugerimos {
   background:var(--azul-claro);
   color: var(--texto-claro);
   font-family: 'ChakraPetch Regular';
-  bottom: 17%;
+  margin-top: -4em;
 }
 .Ver-mas:focus{
   outline: none;
@@ -338,6 +361,7 @@ section.hoy-te-sugerimos {
   background: var(--gradiente);
   justify-content: space-between;
   width: 284px;
+    outline: none;
 };
 .boton_con_x{   
    padding: 0px;
@@ -349,10 +373,54 @@ section.hoy-te-sugerimos {
   border: none;
   outline: none; 
 }
+button.boton_con_x {
+  background: transparent;
+  outline: none;
+  border: transparent;
+}
+nav.buscador {
+  padding: 0px;
+  margin: 0px;
+}
 
+button.boton_con_x {
+  background: transparent;
+  outline: none;
+}
+button#botoncajagris {
+  display: flex;
+  margin-right: 8em;
+  font-size: 16px;
+  color: black;
+  height: 2em;
+  margin-left: 1em;
+  font-family: ChakraPetch-Regular;
+  margin-bottom: 0.3em;
+  background:var(--boton-sugerido);
+  border: solid;
+  border-color: white black black black;
+  border-width: 1px;
+}
+.cajagrisdesplegable {
+  background-color: var(--boton-sugerido);
+  display: flex;
+  flex-direction: column;
+  border-top: white;
+  border: solid;
+  border-width: 1px 0px 0px 0px;
+  padding-top: 1em;
+
+}
+div#contenedor-mis-gifos {
+  display: flex;
+  column-gap: 1em;
+  flex-wrap: wrap;
+  row-gap: 1em;
+  justify-content: center;
+}
 /*-----------pagina gif---------------*/
  .fas{
-   color: black;
+   color: var(--fuente-clara);
    list-style: none;
    text-decoration: none;
  }
@@ -654,4 +722,5 @@ img.contenido-subiendo-globo {
 }
 p.mis-gifos {
   color: var(--fuente-clara);
+  margin-left: 6em;
 }

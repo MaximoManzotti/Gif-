@@ -9,7 +9,9 @@ const boton = document.getElementById("button-menu")
 const $LOGO_AZUL = document.getElementById("logo_azul")
 const TEXTO_BUSQUEDA = document.querySelector(".txt-random")
 const GIF_TENDENCIA = document.querySelector(".elemento")
-const GIF_TENDENCIA_2 = document.querySelector("creacion-previa")
+const GIF_TENDENCIA_2 = document.getElementById("creacion-previa")
+const BUSQUEDASUGERIDA = document.getElementById("cajadesplegable")
+
 
 boton.addEventListener('click', function () {
   if (menu_desplegable.classList.contains('menu_desplegable_none')) {
@@ -28,7 +30,10 @@ function callback_tema() {
   document.documentElement.style.setProperty("--fondo-claro", "#110038");
   document.documentElement.style.setProperty("--gris-claro", "#8F8F8F");
   document.documentElement.style.setProperty("--fuente-clara", "white")
+  document.documentElement.style.setProperty("--boton-sugerido", "#CCCCCC")
   document.documentElement.style.setProperty("background", "var(--fondo-claro)");
+  document.documentElement.style.setProperty("--boton-night", "blue")
+  document.documentElement.style.setProperty("--boton-day", "#CCCCCC")
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo_dark.png)");
 }
 
@@ -41,6 +46,7 @@ if (localStorage.getItem("tema") === "Tema-Oscuro") {
 let tema_claro = document.getElementById("id_tema_dia")
 let estilo_claro = document.getElementById("estilo_claro")
 tema_claro.addEventListener('click', function () {
+  document.documentElement.style.setProperty("--boton-sugerido", "#F0F0F0")
   document.documentElement.style.setProperty("--fuente-clara", "#110038")
   document.documentElement.style.setProperty("--azul-claro", "#4180f6")
   document.documentElement.style.setProperty("--rosa-claro", "#F7C9F3")
@@ -65,6 +71,7 @@ tema_oscuro.addEventListener('click', function () {
 
 
 function crearGif(element, tipo) {
+  
   switch (tipo) {
     case 'tendencias':
 
@@ -89,7 +96,7 @@ function crearGif(element, tipo) {
 </div>`
       return nuevoContenedor.firstChild;
 
-    case 'random':
+      case 'random':
       let contendorRANDOM = document.createElement('div');
       let sin_espacios = element.title.replace(/ /g, "")
 
@@ -112,7 +119,6 @@ async function Random() {
   let response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&limit=4&rating=G`)
   try {
     let random_gif = await response.json();
-    const element = random_gif.data;
     for (let i = 0; i < random_gif.data.length; i++) {
       const element = random_gif.data[i];
       contendorRANDOM.appendChild(crearGif(element, 'random'))
@@ -120,21 +126,21 @@ async function Random() {
   } catch (error) {
 
     console.log("error")
-  }
+    }
 } Random()
 
 async function Tendencias() {
 
   let response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&limit=12&rating=G`)
+  let trending_gif = await response.json();
   try {
-    let trending_gif = await response.json();
     for (let i = 0; i < trending_gif.data.length; i++) {
       const element = trending_gif.data[i + 4];
 
       contendorGifs.appendChild(crearGif(element, 'tendencias'))
     }
   } catch (error) {
-    console.log('Hubo un error')
+    console.error('error');
   }
 } Tendencias()
 
@@ -144,7 +150,7 @@ async function Tendencias() {
 
 async function cargarDatos(busqueda) {
 
-  let response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=${busqueda}&limit=50&offset=0&rating=G&lang=es`)
+  let response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=${busqueda}&limit=2&offset=0&rating=G&lang=es`)
 
   let gifs = await response.json();
   var html = ""
@@ -166,9 +172,24 @@ botonDeBusqueda.onclick = () => {
   var valorDeBusqueda = inputBusqueda.value;
 
   sessionStorage.setItem("busqueda", valorDeBusqueda)
-
   cargarDatos(valorDeBusqueda)
+  Sugerencias(valorDeBusqueda)
 }
 
+async function Sugerencias(busqueda) {
 
+  let response = await fetch(`https://api.giphy.com/v1/tags/related/${busqueda}?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=&lang=es`)
+
+  let busquedasugerida = await response.json();
+  console.log(busquedasugerida.data)
+  try {
+    for (let i = 0; i < 3; i++) {
+      var element = busquedasugerida.data[i];
+      BUSQUEDASUGERIDA.innerHTML += `<button class="texto-cajagrisdesplegable" id="botoncajagris">${element.name}</button>`}
+      var busqueda_sugerida_boton = element.name
+      nuevabusqueda(busqueda_sugerida_boton)
+      
+  } catch (error) {
+    console.log('error')}
+  }  
 

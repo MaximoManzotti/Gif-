@@ -25,8 +25,9 @@ if (localStorage.getItem("tema") === "Tema-Oscuro") {
   document.documentElement.style.setProperty("--fondo-claro", "#110038")
   document.documentElement.style.setProperty("--gris-claro", "#8F8F8F")
   document.documentElement.style.setProperty("--fuente-clara", "white")
+  document.documentElement.style.setProperty("--boton-sugerido", "#CCCCCC")
   document.documentElement.style.setProperty("background", "var(--fondo-claro)")
-
+  document.documentElement.style.setProperty("--boton-night", "blue")
 }
 
 BOTON_COMENZAR.addEventListener('click', function () {
