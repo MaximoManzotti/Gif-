@@ -30,9 +30,8 @@ function callback_tema() {
   document.documentElement.style.setProperty("--fondo-claro", "#110038");
   document.documentElement.style.setProperty("--gris-claro", "#8F8F8F");
   document.documentElement.style.setProperty("--fuente-clara", "white")
-  document.documentElement.style.setProperty("--boton-sugerido", "#CCCCCC")
   document.documentElement.style.setProperty("background", "var(--fondo-claro)");
-  document.documentElement.style.setProperty("--boton-night", "blue")
+  document.documentElement.style.setProperty("--boton-night", "#2E32FB")
   document.documentElement.style.setProperty("--boton-day", "#CCCCCC")
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo_dark.png)");
 }
@@ -46,7 +45,6 @@ if (localStorage.getItem("tema") === "Tema-Oscuro") {
 let tema_claro = document.getElementById("id_tema_dia")
 let estilo_claro = document.getElementById("estilo_claro")
 tema_claro.addEventListener('click', function () {
-  document.documentElement.style.setProperty("--boton-sugerido", "#F0F0F0")
   document.documentElement.style.setProperty("--fuente-clara", "#110038")
   document.documentElement.style.setProperty("--azul-claro", "#4180f6")
   document.documentElement.style.setProperty("--rosa-claro", "#F7C9F3")
@@ -56,6 +54,8 @@ tema_claro.addEventListener('click', function () {
   document.documentElement.style.setProperty("--gris-claro", "#E6E6E68F")
   document.documentElement.style.setProperty("background", "var(--fondo-claro)")
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo.png)")
+  document.documentElement.style.setProperty("--boton-day", "#FFF4FD")
+  document.documentElement.style.setProperty("--boton-night", "#F0F0F0")
 
   localStorage.setItem("tema", "Tema-Claro")
 
@@ -71,7 +71,7 @@ tema_oscuro.addEventListener('click', function () {
 
 
 function crearGif(element, tipo) {
-  
+
   switch (tipo) {
     case 'tendencias':
 
@@ -96,7 +96,7 @@ function crearGif(element, tipo) {
 </div>`
       return nuevoContenedor.firstChild;
 
-      case 'random':
+    case 'random':
       let contendorRANDOM = document.createElement('div');
       let sin_espacios = element.title.replace(/ /g, "")
 
@@ -126,12 +126,12 @@ async function Random() {
   } catch (error) {
 
     console.log("error")
-    }
+  }
 } Random()
 
 async function Tendencias() {
 
-  let response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&limit=12&rating=G`)
+  let response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&limit=253&rating=G`)
   let trending_gif = await response.json();
   try {
     for (let i = 0; i < trending_gif.data.length; i++) {
@@ -150,7 +150,7 @@ async function Tendencias() {
 
 async function cargarDatos(busqueda) {
 
-  let response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=${busqueda}&limit=2&offset=0&rating=G&lang=es`)
+  let response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=${busqueda}&limit=15&offset=0&rating=G&lang=es`)
 
   let gifs = await response.json();
   var html = ""
@@ -183,13 +183,14 @@ async function Sugerencias(busqueda) {
   let busquedasugerida = await response.json();
   console.log(busquedasugerida.data)
   try {
-    for (let i = 0; i < 3; i++) {
-      var element = busquedasugerida.data[i];
-      BUSQUEDASUGERIDA.innerHTML += `<button class="texto-cajagrisdesplegable" id="botoncajagris">${element.name}</button>`}
-      var busqueda_sugerida_boton = element.name
-      nuevabusqueda(busqueda_sugerida_boton)
-      
+      BUSQUEDASUGERIDA.innerHTML = `<button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[1].name}</button>
+             <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[2].name}</button>
+             <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[3].name}</button>`
+    var busqueda_sugerida_boton = element.name
+    nuevabusqueda(busqueda_sugerida_boton)
+
   } catch (error) {
-    console.log('error')}
-  }  
+    console.log('error')
+  }
+}
 

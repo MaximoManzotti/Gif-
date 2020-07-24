@@ -14,7 +14,6 @@
   --boton-sugerido:#F0F0F0 100%;
   background: (var(--fondo-claro));
   --boton-nigth:#F0F0F0;
-  --boton-day:#FFF4FD;
   overflow-y: scroll;
    overflow-x: hidden;
    --logo-azul:url(../imagenes/gifOF_logo.png);
@@ -142,7 +141,7 @@ button:focus{
   background:transparent;
   position: absolute;
   margin-top: -1.6em;
-  width: 14em;
+  width: 280px;
 }
 .titulo-de-gif-2{
   margin: 0px;
@@ -150,19 +149,17 @@ button:focus{
   background:transparent;
   position: absolute;
   margin-top: -1.6em;
-
 }
 .elemento:hover .titulo-de-gif{
   color: var(--texto-claro);
   background:var(--gradiente);
-  width: fit-content;
+  width: 280px;
 
 }
 .elemento-2:hover .titulo-de-gif-2{
   color: var(--texto-claro);
   background:var(--gradiente);
-  width: fit-content;
-
+  width: 591px;
 }
 .botones_lista {
   display: -webkit-inline-box;
@@ -211,7 +208,7 @@ button:focus{
   border: groove;
   border-width: 1px;
   border-color:white black black black;
-  background:var(--boton-day) !important;
+  background:var(--fondo-claro);
   color: var(--fuente-clara);
   padding: 0.4em 1em 0.4em 1em;
   height: 29px;
@@ -224,6 +221,7 @@ button:focus{
   border: groove;
   border-width: 1px;
   border-color:white black black black;
+  background-color:var(--fondo-claro);
   color: var(--fuente-clara);
   padding: 0.4em 1em 0.4em 1em;
   height: 29px;
@@ -231,7 +229,6 @@ button:focus{
   margin: 0px;
   margin: 4px;
   padding: 0.3em 1em 0.24em 1em;
-  background-color:var(--boton-nigth);
 }
 
 
@@ -723,4 +720,21 @@ img.contenido-subiendo-globo {
 p.mis-gifos {
   color: var(--fuente-clara);
   margin-left: 6em;
+}
+a#rehacer {
+  align-content: baseline;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--fuente-clara);
+  background: var(--fondo-claro);
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 7px;
+  font-size: 0.7em;
+  margin-top: 0.6em;
+  margin-right: 2em;
+  border: solid;
+  border-color: black;
+  border-width: 1px;
 }

@@ -13,6 +13,7 @@ const CONTENEDOR_SUBIENDO = document.getElementById('id-caja-subiendo')
 const CAJAFINAL = document.getElementById('cajavideoybotonesfinal')
 const BOTON_FINAL = document.getElementById("botonesfinal")
 const BOTON_LISTO = document.getElementById("ready")
+const DOWNLOAD = document.getElementById("descargar")
 
 
 if (localStorage.getItem("tema") === "Tema-Oscuro") {
@@ -27,9 +28,23 @@ if (localStorage.getItem("tema") === "Tema-Oscuro") {
   document.documentElement.style.setProperty("--fuente-clara", "white")
   document.documentElement.style.setProperty("--boton-sugerido", "#CCCCCC")
   document.documentElement.style.setProperty("background", "var(--fondo-claro)")
-  document.documentElement.style.setProperty("--boton-night", "blue")
+  document.documentElement.style.setProperty("--boton-night", "#2E32FB 100%")
 }
 
+let recorder = navigator.mediaDevices.getUserMedia(
+  {
+    audio: false,
+    video: true
+  }
+).then(function (mediaStream) {
+   recorder = RecordRTC(mediaStream, {
+    type: 'gif',
+    quality: 10,
+    width: 360,
+    hidden: 240,
+    frameRate: 3,
+  });
+  
 BOTON_COMENZAR.addEventListener('click', function () {
   ELIMINAR_CAJA.style.setProperty("display", "none")
   PRIMER_CAMARA.style.setProperty("display", "flex")
@@ -53,6 +68,9 @@ BOTON_COMENZAR.addEventListener('click', function () {
     video.play();
   })
 })
+
+
+
 BOTON_CAPTURAR.addEventListener('click', function () {
   CAJA_BOTON_CAPTURAR.style.setProperty("display", "none")
   CAJA_BOTON_GRABAR.style.setProperty("display", "flex")
@@ -75,7 +93,7 @@ const videoPreview = document.getElementById("preview")
 BOTON_GRABAR.onclick = function () {
   recorder.stopRecording();
   video.innerHTML = `<style>.video-preview{display:flex} .pantalla-video{display: none;}</style>`;
-
+  
 
   recorder.getDataURL(url => {
     videoPreview.src = url;
@@ -83,6 +101,7 @@ BOTON_GRABAR.onclick = function () {
 
   blob = recorder.getBlob();
   console.log(blob)
+
   recorder.getDataURL((url) => {
     try {
       console.log(url)
@@ -90,7 +109,7 @@ BOTON_GRABAR.onclick = function () {
       document.getElementById("preview").src = url;
     }
     catch{
-      console.log(error);
+      console.log("error");
 
     }
   })
@@ -112,24 +131,24 @@ navigator.mediaDevices.getUserMedia(
 ).then(function (mediaStream) {
   let video = document.getElementById("video")
 
-  recorder = RecordRTC(mediaStream, {
+   recorder = RecordRTC(mediaStream, {
     type: 'gif',
     quality: 10,
     width: 360,
     hidden: 240,
     frameRate: 3,
   });
-
-
-
+  
   BOTON_CAPTURAR.onclick = startRecording;
   video.srcObject = mediaStream
   video.play();
+
 }).catch(function (err) {
 
   console.log(err)
   alert("error")
 });
+
 var buttonSubir = document.getElementById("subir")
 
 
@@ -181,7 +200,6 @@ async function mis_gifos() {
     var id = JSON.parse(idsLS)
     let idsstring = ""
     id.forEach(item => idsstring += item + ",")
-
     var mis_gifs = await fetch(`https://api.giphy.com/v1/gifs?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&ids=$${id}`)
 
 
@@ -204,5 +222,11 @@ async function mis_gifos() {
 } mis_gifos()
 
 
+
+DOWNLOAD.addEventListener('click', () =>{
+  let blob = recorder.getBlob()
+
+    invokeSaveAsDialog(blob, 'gif');
+})})
 
 
