@@ -14,7 +14,8 @@ const CAJAFINAL = document.getElementById('cajavideoybotonesfinal')
 const BOTON_FINAL = document.getElementById("botonesfinal")
 const BOTON_LISTO = document.getElementById("ready")
 const DOWNLOAD = document.getElementById("descargar")
-
+const COPY = document.getElementById("copiar_enlace")
+const TXT_COPY = document.getElementById("link")
 
 if (localStorage.getItem("tema") === "Tema-Oscuro") {
 
@@ -164,9 +165,12 @@ async function subirVideo() {
   let post = await fetch("https://upload.giphy.com/v1/gifs?&api_key=igY9hZqLYu5goaPfGeVuhM8DmxXLxu3v", {
     method: "POST",
     body: form
+   
   })
+  
   let id_post = await post.json()
   let id = id_post.data.id;
+  localStorage.setItem('datos',id)
   let ids = []
   let idsLS = localStorage.getItem("my_gifs")
   if (idsLS != null) {
@@ -204,6 +208,7 @@ async function mis_gifos() {
 
 
     try {
+      
       var gif_por_id = await mis_gifs.json()
       const element = gif_por_id.data;
       for (let i = 0; i < element.length; i++) {
@@ -213,7 +218,7 @@ async function mis_gifos() {
       }
 
     } catch (error) {
-      console, log("hay un error")
+      console.log("hay un error")
     }
 
   } else {
@@ -229,4 +234,17 @@ DOWNLOAD.addEventListener('click', () =>{
     invokeSaveAsDialog(blob, 'gif');
 })})
 
+COPY.addEventListener('click', ()=>{copiar(localStorage.getItem(`datos`))})
+
+
+function copiar(id) {
+  const COPIARELEMENTO = document.createElement('textarea')
+  COPIARELEMENTO.value  = `https://giphy.com/gifs/${id}`
+  COPIARELEMENTO.setAttribute('readonly', '')
+  COPIARELEMENTO.style = 'background', 'transparent'
+  document.body.appendChild(COPIARELEMENTO)
+  COPIARELEMENTO.select()
+  document.execCommand('copy')
+  document.body.removeChild(COPIARELEMENTO)
+}
 

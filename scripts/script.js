@@ -76,13 +76,26 @@ function crearGif(element, tipo) {
     case 'tendencias':
 
       let nuevoContenedor = document.createElement('div');
+      let titulo = JSON.stringify(element.title)
+      // let remplazo = titulo.substring(1, 20)
+      let sin_espacio = titulo.replace(/ /g, '#')
+      let textoAreaDividido = sin_espacio.split("#");
+      let numeroPalabras = textoAreaDividido.length; 
+      console.log(textoAreaDividido[4])
+
+      if (textoAreaDividido[4] != "undefined"){
+        var  texto_final = `${textoAreaDividido[1]}#${textoAreaDividido[2]}#${textoAreaDividido[3]}}`
+      }else{
+        var texto_final = `${textoAreaDividido[1]}#${textoAreaDividido[2]}#${textoAreaDividido[3]}#${textoAreaDividido[4]}`
+      }  
+      
       if (element.images.original.width > element.images.original.height) {
         nuevoContenedor.innerHTML = `<div class="elemento-2">
     <div> 
        <img src="${element.images.original.url}" class="gifos-2">
        <div>
        
-       <p class="titulo-de-gif-2">#${element.title}</p>
+       <p class="titulo-de-gif-2">${texto_final}</p>
        </div>
     </div>
 </div>`
@@ -90,7 +103,7 @@ function crearGif(element, tipo) {
   <div class="grilla"> 
   <img src="${element.images.original.url}" class="gifos">
      <div>
-        <p class="titulo-de-gif">#${element.title}</p>
+        <p class="titulo-de-gif">#${texto_final}</p>
      </div>
   </div>
 </div>`
@@ -99,7 +112,7 @@ function crearGif(element, tipo) {
     case 'random':
       let contendorRANDOM = document.createElement('div');
       let sin_espacios = element.title.replace(/ /g, "")
-
+     
       contendorRANDOM.innerHTML = `<div class="elemento">
             <div>
             <div class="titulo-x"><p class="titulo-de-gif-con-x">#${sin_espacios}</p><button class="boton_con_x"><img src="./imagenes/close.svg" alt="x"</button></div>
