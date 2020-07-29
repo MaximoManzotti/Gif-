@@ -11,8 +11,11 @@ const TEXTO_BUSQUEDA = document.querySelector(".txt-random")
 const GIF_TENDENCIA = document.querySelector(".elemento")
 const GIF_TENDENCIA_2 = document.getElementById("creacion-previa")
 const BUSQUEDASUGERIDA = document.getElementById("cajadesplegable")
-
-
+const CONTENEDOR_MIS_GIFOS = document.getElementById('contenedor-mis-gifos')
+const MIS_GIFS = document.getElementById('mis-gifos')
+const DISPLAY_PAGINA = document.getElementById('cambiardisplay')
+const CAJAGIFS = document.getElementById('mis-gifs')
+const IMAGEN = document.getElementById('boton-imagen')
 boton.addEventListener('click', function () {
   if (menu_desplegable.classList.contains('menu_desplegable_none')) {
     menu_desplegable.classList.remove('menu_desplegable_none');
@@ -31,7 +34,7 @@ function callback_tema() {
   document.documentElement.style.setProperty("--gris-claro", "#8F8F8F");
   document.documentElement.style.setProperty("--fuente-clara", "white")
   document.documentElement.style.setProperty("background", "var(--fondo-claro)");
-  document.documentElement.style.setProperty("--boton-night", "#2E32FB")
+  document.documentElement.style.setProperty("--boton-night", "blue")
   document.documentElement.style.setProperty("--boton-day", "#CCCCCC")
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo_dark.png)");
 }
@@ -54,7 +57,7 @@ tema_claro.addEventListener('click', function () {
   document.documentElement.style.setProperty("--gris-claro", "#E6E6E68F")
   document.documentElement.style.setProperty("background", "var(--fondo-claro)")
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo.png)")
-  document.documentElement.style.setProperty("--boton-day", "#FFF4FD")
+  document.documentElement.style.setProperty("--boton-day", "var(--rosa-claro)")
   document.documentElement.style.setProperty("--boton-night", "#F0F0F0")
 
   localStorage.setItem("tema", "Tema-Claro")
@@ -80,22 +83,25 @@ function crearGif(element, tipo) {
       // let remplazo = titulo.substring(1, 20)
       let sin_espacio = titulo.replace(/ /g, '#')
       let textoAreaDividido = sin_espacio.split("#");
-      let numeroPalabras = textoAreaDividido.length; 
-      console.log(textoAreaDividido[4])
 
-      if (textoAreaDividido[4] != "undefined"){
-        var  texto_final = `${textoAreaDividido[1]}#${textoAreaDividido[2]}#${textoAreaDividido[3]}}`
-      }else{
+
+      if (textoAreaDividido[2] == undefined) {
+        var texto_final = `${textoAreaDividido[1]}`
+      } else if (textoAreaDividido[3] == undefined) {
+        var texto_final = `${textoAreaDividido[1]}#${textoAreaDividido[2]}`
+      } else if (textoAreaDividido[4] == undefined) {
+        var texto_final = `${textoAreaDividido[1]}#${textoAreaDividido[2]}#${textoAreaDividido[3]}`
+      } else {
         var texto_final = `${textoAreaDividido[1]}#${textoAreaDividido[2]}#${textoAreaDividido[3]}#${textoAreaDividido[4]}`
-      }  
-      
+      }
+
       if (element.images.original.width > element.images.original.height) {
         nuevoContenedor.innerHTML = `<div class="elemento-2">
     <div> 
        <img src="${element.images.original.url}" class="gifos-2">
        <div>
        
-       <p class="titulo-de-gif-2">${texto_final}</p>
+       <p class="titulo-de-gif-2">#${texto_final.replace('"', '')}</p>
        </div>
     </div>
 </div>`
@@ -103,7 +109,7 @@ function crearGif(element, tipo) {
   <div class="grilla"> 
   <img src="${element.images.original.url}" class="gifos">
      <div>
-        <p class="titulo-de-gif">#${texto_final}</p>
+        <p class="titulo-de-gif">#${texto_final.replace('"', '')}</p>
      </div>
   </div>
 </div>`
@@ -111,11 +117,14 @@ function crearGif(element, tipo) {
 
     case 'random':
       let contendorRANDOM = document.createElement('div');
-      let sin_espacios = element.title.replace(/ /g, "")
-     
+      let sin_espacios = element.title.replace(/ /g, "#")
+      let textoAreaDivididos = sin_espacios.split("#");
+
+
+
       contendorRANDOM.innerHTML = `<div class="elemento">
             <div>
-            <div class="titulo-x"><p class="titulo-de-gif-con-x">#${sin_espacios}</p><button class="boton_con_x"><img src="./imagenes/close.svg" alt="x"</button></div>
+            <div class="titulo-x"><p class="titulo-de-gif-con-x">#${textoAreaDivididos[1]}${textoAreaDivididos[2]}${textoAreaDivididos[3]}</p><button class="boton_con_x"><img src="./imagenes/close.svg" alt="x"</button></div>
             <img src="${element.images.original.url}" class="gifos">
            </div>
            <input class="Ver-mas" type="button" onclick="location.href='https://giphy.com/';" value="Ver más…..." />
@@ -144,7 +153,7 @@ async function Random() {
 
 async function Tendencias() {
 
-  let response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&limit=253&rating=G`)
+  let response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&limit=103&rating=G`)
   let trending_gif = await response.json();
   try {
     for (let i = 0; i < trending_gif.data.length; i++) {
@@ -169,12 +178,28 @@ async function cargarDatos(busqueda) {
   var html = ""
   for (let i = 0; i < gifs.data.length; i++) {
     const element = gifs.data[i];
+    let titulo = JSON.stringify(element.title)
+    // let remplazo = titulo.substring(1, 20)
+    let sin_espacio = titulo.replace(/ /g, '#')
+    let textoAreaDividido = sin_espacio.split("#");
+
+
+    if (textoAreaDividido[2] == undefined) {
+      var texto_final = `${textoAreaDividido[1]}`
+    } else if (textoAreaDividido[3] == undefined) {
+      var texto_final = `${textoAreaDividido[1]}#${textoAreaDividido[2]}`
+    } else if (textoAreaDividido[4] == undefined) {
+      var texto_final = `${textoAreaDividido[1]}#${textoAreaDividido[2]}#${textoAreaDividido[3]}`
+    } else {
+      var texto_final = `${textoAreaDividido[1]}#${textoAreaDividido[2]}#${textoAreaDividido[3]}#${textoAreaDividido[4]}`
+    }
+
     html += `<div class="elemento">
                       <div> 
                            <img src="${element.images.original.url}" class="gifos">
                        </div> 
                         <div>
-                          <p class="titulo-de-gif">#${element.title}</p>
+                          <p class="titulo-de-gif">#${texto_final.replace('"', '')}</p>
                      </div>
                    </div>`
     TEXTO_BUSQUEDA.innerHTML = `<p class=busqueda">${sessionStorage.getItem("busqueda")}</p>`
@@ -196,7 +221,7 @@ async function Sugerencias(busqueda) {
   let busquedasugerida = await response.json();
   console.log(busquedasugerida.data)
   try {
-      BUSQUEDASUGERIDA.innerHTML = `<button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[1].name}</button>
+    BUSQUEDASUGERIDA.innerHTML = `<button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[1].name}</button>
              <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[2].name}</button>
              <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[3].name}</button>`
     var busqueda_sugerida_boton = element.name
@@ -207,3 +232,46 @@ async function Sugerencias(busqueda) {
   }
 }
 
+async function mis_gifos() {
+  if (localStorage.getItem("my_gifs")) {
+    let idsLS = localStorage.getItem("my_gifs")
+    var id = JSON.parse(idsLS)
+    let idsstring = ""
+    id.forEach(item => idsstring += item + ",")
+    var mis_gifs = await fetch(`https://api.giphy.com/v1/gifs?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&ids=$${id}`)
+
+
+    try {
+
+      var gif_por_id = await mis_gifs.json()
+      const element = gif_por_id.data;
+      for (let i = 0; i < element.length; i++) {
+        const element = gif_por_id.data[i];
+        CONTENEDOR_MIS_GIFOS.innerHTML += `<img src="${element.images.original.url}" class="mis-gif-subidos"> `
+        console.log(gif_por_id.data[i])
+      }
+
+    } catch (error) {
+      console.log("hay un error")
+    }
+
+  } else {
+    alert("Bienvenido a gifos!")
+  }
+} mis_gifos()
+
+
+MIS_GIFS.onclick = () => {
+  if (DISPLAY_PAGINA.style.display === "block") {
+    DISPLAY_PAGINA.style.display = "none"
+    CAJAGIFS.style.display= 'block'
+  } else {
+    DISPLAY_PAGINA.style.display = "block"
+    CAJAGIFS.style.display = 'none'
+  }
+}
+IMAGEN.onclick= () =>{
+  if (DISPLAY_PAGINA.style.display === "none") {
+  DISPLAY_PAGINA.style.display = "block"
+  CAJAGIFS.style.display = 'none'}
+}

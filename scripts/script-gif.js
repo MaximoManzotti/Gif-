@@ -17,6 +17,7 @@ const DOWNLOAD = document.getElementById("descargar")
 const COPY = document.getElementById("copiar_enlace")
 const TXT_COPY = document.getElementById("link")
 
+
 if (localStorage.getItem("tema") === "Tema-Oscuro") {
 
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo_dark.png)")
@@ -27,9 +28,9 @@ if (localStorage.getItem("tema") === "Tema-Oscuro") {
   document.documentElement.style.setProperty("--fondo-claro", "#110038")
   document.documentElement.style.setProperty("--gris-claro", "#8F8F8F")
   document.documentElement.style.setProperty("--fuente-clara", "white")
-  document.documentElement.style.setProperty("--boton-sugerido", "#CCCCCC")
+  document.documentElement.style.setProperty("--boton-sugerido", "#8F8F8F")
   document.documentElement.style.setProperty("background", "var(--fondo-claro)")
-  document.documentElement.style.setProperty("--boton-night", "#2E32FB 100%")
+  document.documentElement.style.setProperty("--boton-night", "blue")
 }
 
 let recorder = navigator.mediaDevices.getUserMedia(

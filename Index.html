@@ -5,6 +5,7 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>GIF.OS</title>
+     <link rel="shortcut icon" href="./imagenes/gifOF_logo.png" type="image/x-icon">
      <script src="https://kit.fontawesome.com/a92d32d912.js" crossorigin="anonymous"></script>
      <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Open+Sans&display=swap"
           rel="stylesheet">
@@ -20,76 +21,87 @@
      <header>
           <div class="margenes">
                <section class="botones-y-logo">
-                    <div class="img_logo" id="logo_azul">
-                              
-                    </div>
-                    <div class="botones">
-                         <div class="caja-de-crear">
-                              <a href="./gif.html" class="boton-crear">Crear Guifos</a>
-                         </div>
-                         <div>
-                              <button class="caja-boton-tema" id="button-menu">
-                                   <a  class="boton-tema">Elegir Tema</a>
-                                   <a class=""><img src="./imagenes/dropdown.svg" alt="flecha"
-                                             class="flecha"></a>
-                              </button>
-                              
-                              <div  id="id_menu_desplegable" class="menu_desplegable_none">
-                                     <div class='tema-dia' id="id_tema_dia">
-                                           <button class="sailor-day"><U>S</U>ailor Day</button>
-                                           <style id="estilo_claro"></style>
-                                     </div>
-                                      <div class='tema-noche' id="id_tema_noche">
-                                          <button class="sailor-night"><U>S</U>ailor Night</button>
-                                          <style id="estilo_oscuro"></style>
-                                      </div>
+                    <div class="img_logo" id="logo_azul"></div>
+                    <div>
+
+                         <div class="botones">
+                              <div class="caja-de-crear">
+                                   <a href="./gif.html" class="boton-crear">Crear Guifos</a>
                               </div>
+                              <div>
+                                   <button class="caja-boton-tema" id="button-menu">
+                                        <a class="boton-tema">Elegir Tema</a>
+                                        <a class=""><img src="./imagenes/dropdown.svg" alt="flecha" class="flecha" id="boton-imagen"></a>
+                                   </button>
+
+                                   <div id="id_menu_desplegable" class="menu_desplegable_none">
+                                        <div class='tema-dia' id="id_tema_dia">
+                                             <button class="sailor-day"><U>S</U>ailor Day</button>
+                                             <style id="estilo_claro"></style>
+                                        </div>
+                                        <div class='tema-noche' id="id_tema_noche">
+                                             <button class="sailor-night"><U>S</U>ailor Night</button>
+                                             <style id="estilo_oscuro"></style>
+                                        </div>
+                                   </div>
+                              </div>
+                              <button href="#mis-gifs" class="mis-guifos" id="mis-gifos"><u class="M">M</u>is
+                                   Guifos</button>
                          </div>
-                         <a href="" class="mis-guifos"><u class="M">M</u>is Guifos</a>
                     </div>
                </section>
-          </header>
-               <section class="buscador">
-                    <p class="gradiente_buscador">Buscar</p>
-                    <div class="fondo_gris">
-                         <nav class="buscador">
-                              <div class="buscador__inputs">
-                                  <input placeholder="Busca gifs, hashtags, temas, busca lo que quieras…" class="buscador_gris" id="contenido_de_busqueda" type="text"></input>
-                                  
-                                  <button type="submit" class="boton-lupa" id="boton_busqueda">
+     </header>
+     <div id="cambiardisplay">
+     <div>
+          <section class="buscador">
+               <p class="gradiente_buscador">Buscar</p>
+               <div class="fondo_gris">
+                    <nav class="buscador">
+                         <div class="buscador__inputs">
+                              <input placeholder="Busca gifs, hashtags, temas, busca lo que quieras…"
+                                   class="buscador_gris" id="contenido_de_busqueda" type="text"></input>
+
+                              <button type="submit" class="boton-lupa" id="boton_busqueda">
                                    <object data="./imagenes/lupa.svg" type="image/svg+xml" class="lupa">
                                         <img src="./imagenes/lupa.svg" alt="lupa">
                                    </object>
                                    <div class="buscar">Buscar</div>
                               </button>
-                              </div>
-                          </nav>
-                    </div>
-                    <div id="cajadesplegable" class="cajagrisdesplegable">
-                         
-                    </div>
-               </section>
-      
-               <section class="Random">
-                    <p class="txt-random">Hoy Te Sugerimos</p>
-                         <div id="contendor_gifs" class="contenedor-de-gif">
-                          </div>
                          </div>
-                     </div>
-               </section>
-               
-               <section class="hoy-te-sugerimos">
-                   
-                    <p class="txt-hoy-te-sugerimos">tendencias</p>
-             
-                         <div id="tendencias" class="contenedor-de-gif">
-                          </div>
-                         </div>
-                     </div>
-               </section>
+                    </nav>
+               </div>
+               <div id="cajadesplegable" class="cajagrisdesplegable">
 
+               </div>
+          </section>
+
+          <section class="Random">
+               <p class="txt-random">Hoy Te Sugerimos</p>
+               <div id="contendor_gifs" class="contenedor-de-gif">
+               </div>
+     </div>
+    
+     </section>
+
+     <section class="hoy-te-sugerimos">
+
+          <p class="txt-hoy-te-sugerimos">tendencias</p>
+
+          <div id="tendencias" class="contenedor-de-gif">
           </div>
-          <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+          </div>
+          </div>
+     </section>
+    </div>
+     </div>
+     </div>
+     <section id="mis-gifs">
+          <p class="mis-gifos-pagina">Mis Gifos</p>
+          <div id='contenedor-mis-gifos' class="caja-de-gif-subidos">
+          </div>
+
+     </section>
+     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
      <script src="./scripts/script.js"></script>
 </body>
 

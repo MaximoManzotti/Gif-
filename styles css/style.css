@@ -11,12 +11,13 @@
   --gris-claro:#E6E6E6;
   --gris-lupa:#B4B4B4;
   --rojo-grabar:#FF6161;
-  --boton-sugerido:#F0F0F0 100%;
+  --boton-sugerido:#E6E6E6;
   background: (var(--fondo-claro));
-  --boton-nigth:#F0F0F0;
   overflow-y: scroll;
    overflow-x: hidden;
    --logo-azul:url(../imagenes/gifOF_logo.png);
+  --boton-day:#F7C9F3;
+  --boton-night:#F0F0F0;
 }
 body{
   width: 100% ;
@@ -114,6 +115,7 @@ button:focus{
   width: 280px;
   border: outset;
   border-width: 2px 2px 2px 2px;
+  margin-bottom: 1em;
 
 
 }
@@ -123,6 +125,7 @@ button:focus{
   width: 591px;
   border: outset;
   border-width: 2px 2px 2px 2px;
+  margin-bottom: 1em;
 
 }
 .elemento-2 {
@@ -140,7 +143,7 @@ button:focus{
   color: transparent;
   background:transparent;
   position: absolute;
-  margin-top: -1.6em;
+  margin-top: -2.5em;
   width: 280px;
 }
 .titulo-de-gif-2{
@@ -148,7 +151,7 @@ button:focus{
   color: transparent;
   background:transparent;
   position: absolute;
-  margin-top: -1.6em;
+  margin-top: -2.5em;
 }
 .elemento:hover .titulo-de-gif{
   color: var(--texto-claro);
@@ -208,7 +211,7 @@ button:focus{
   border: groove;
   border-width: 1px;
   border-color:white black black black;
-  background:var(--fondo-claro);
+  background:var(--boton-day);
   color: var(--fuente-clara);
   padding: 0.4em 1em 0.4em 1em;
   height: 29px;
@@ -221,7 +224,7 @@ button:focus{
   border: groove;
   border-width: 1px;
   border-color:white black black black;
-  background-color:var(--fondo-claro);
+  background-color:var(--boton-night);
   color: var(--fuente-clara);
   padding: 0.4em 1em 0.4em 1em;
   height: 29px;
@@ -261,23 +264,7 @@ button:focus{
   display: flex;
   align-content: center;
 }
-.mis-guifos {
-  color: var(--fuente-clara);
-  margin: 6px 0px 0px 0px;
-  text-decoration: none;
-  height: fit-content;
- 
-   
-}
-.mis-guifos:hover{
-  border: solid;
-  border-width: 1px;
-  
-}
-.mis-guifos:active{
-  border: none;
-  color: var(--gris-claro);
-}
+
 .buscador {
   background-color: var(--boton-sugerido);
   color: var(--fuente-clara);
@@ -348,7 +335,7 @@ section.hoy-te-sugerimos {
   background:var(--azul-claro);
   color: var(--texto-claro);
   font-family: 'ChakraPetch Regular';
-  margin-top: -4em;
+  margin-top: -5em;
 }
 .Ver-mas:focus{
   outline: none;
@@ -408,6 +395,23 @@ button#botoncajagris {
   padding-top: 1em;
 
 }
+.mis-guifos{
+  color: var(--fuente-clara);
+  background-color: transparent;
+  margin: 6px 0px 0px 0px;
+  text-decoration: none;
+  height: fit-content;
+  border: none;
+  font-size: 0.9em;
+}
+.mis-guifos:hover{
+  color:var(--gris-lupa);
+}
+.mis-guifos:active{
+  color:var(--gris-lupa);
+  border: solid;
+  border-width: 1px;
+}
 div#contenedor-mis-gifos {
   display: flex;
   column-gap: 1em;
@@ -415,6 +419,11 @@ div#contenedor-mis-gifos {
   row-gap: 1em;
   justify-content: center;
 }
+button#botoncajagris:hover {
+  background-color: var(--gris-lupa);
+}
+#mis-gifs {
+  display: none}
 /*-----------pagina gif---------------*/
  .fas{
    color: var(--fuente-clara);
@@ -737,4 +746,22 @@ a#rehacer {
   border: solid;
   border-color: black;
   border-width: 1px;
+}
+/* mis-guifos */
+
+img.mis-gif-subidos{
+  margin: 0.6em !important;
+  border: outset;
+  height: 280px;
+  width: 280px;
+}
+p.mis-gifos-pagina {
+  font-family: 'Chakra Petch', sans-serif;
+  background-color: var(--rosa-claro);
+  color: var(--fuente-clara);
+  border: inset;
+  font-weight: 14px;
+  width: 83.5%;
+  margin-left: 6em;
+  margin-right: 25em;
 }
