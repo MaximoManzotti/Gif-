@@ -18,6 +18,7 @@
    --logo-azul:url(../imagenes/gifOF_logo.png);
   --boton-day:#F7C9F3;
   --boton-night:#F0F0F0;
+  --boton-busqueda:#E6E6E6;
 }
 body{
   width: 100% ;
@@ -285,7 +286,7 @@ button:focus{
     height: 36px;
     font-size: 16px;
     width: 100% !important;
-    font-family: ChakraPetch-Regular;
+    font-family: 'ChakraPetch-Regular';
    
 }
 .boton-lupa{
@@ -297,7 +298,11 @@ button:focus{
   border: solid;
   border-width: 2px 1px 1px 1px;
   border-color: #808080 #808080 #808080 white;
-  background-color: var(--boton-sugerido);
+  background-color: var(--boton-busqueda);
+}
+.boton-lupa:active{
+ color: var(--fuente-clara) ;
+ background-color: var(--rosa-active);
 }
 .buscador__inputs {
   display: flex;
@@ -421,9 +426,20 @@ div#contenedor-mis-gifos {
 }
 button#botoncajagris:hover {
   background-color: var(--gris-lupa);
+
 }
 #mis-gifs {
-  display: none}
+  display: none
+}
+div#palabras_buscadas {
+  display: flex;
+}
+p.botones_azules_recomendados {
+  margin-left: 6em;
+  background: blue;
+  padding: 0.5em 2em;
+  color: white;
+}
 /*-----------pagina gif---------------*/
  .fas{
    color: var(--fuente-clara);

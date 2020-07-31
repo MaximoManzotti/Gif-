@@ -16,6 +16,9 @@ const MIS_GIFS = document.getElementById('mis-gifos')
 const DISPLAY_PAGINA = document.getElementById('cambiardisplay')
 const CAJAGIFS = document.getElementById('mis-gifs')
 const IMAGEN = document.getElementById('boton-imagen')
+const PALABRASBUSCADAS = document.getElementById('palabras_buscadas')
+const BODY = document.getElementById('body')
+
 boton.addEventListener('click', function () {
   if (menu_desplegable.classList.contains('menu_desplegable_none')) {
     menu_desplegable.classList.remove('menu_desplegable_none');
@@ -37,6 +40,7 @@ function callback_tema() {
   document.documentElement.style.setProperty("--boton-night", "blue")
   document.documentElement.style.setProperty("--boton-day", "#CCCCCC")
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo_dark.png)");
+
 }
 
 
@@ -162,7 +166,7 @@ async function Tendencias() {
       contendorGifs.appendChild(crearGif(element, 'tendencias'))
     }
   } catch (error) {
-    console.error('error');
+    ;
   }
 } Tendencias()
 
@@ -208,29 +212,22 @@ async function cargarDatos(busqueda) {
 }
 botonDeBusqueda.onclick = () => {
   var valorDeBusqueda = inputBusqueda.value;
-
-  sessionStorage.setItem("busqueda", valorDeBusqueda)
+  link_azul(valorDeBusqueda)
   cargarDatos(valorDeBusqueda)
-  Sugerencias(valorDeBusqueda)
+  sessionStorage.setItem("busqueda", inputBusqueda.value)
 }
-
 async function Sugerencias(busqueda) {
-
   let response = await fetch(`https://api.giphy.com/v1/tags/related/${busqueda}?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=&lang=es`)
-
   let busquedasugerida = await response.json();
-  console.log(busquedasugerida.data)
   try {
     BUSQUEDASUGERIDA.innerHTML = `<button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[1].name}</button>
-             <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[2].name}</button>
-             <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[3].name}</button>`
-    var busqueda_sugerida_boton = element.name
-    nuevabusqueda(busqueda_sugerida_boton)
-
+       <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[2].name}</button>
+       <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[3].name}</button>`
   } catch (error) {
     console.log('error')
   }
 }
+
 
 async function mis_gifos() {
   if (localStorage.getItem("my_gifs")) {
@@ -238,11 +235,9 @@ async function mis_gifos() {
     var id = JSON.parse(idsLS)
     let idsstring = ""
     id.forEach(item => idsstring += item + ",")
+    console.log(id)
     var mis_gifs = await fetch(`https://api.giphy.com/v1/gifs?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&ids=$${id}`)
-
-
     try {
-
       var gif_por_id = await mis_gifs.json()
       const element = gif_por_id.data;
       for (let i = 0; i < element.length; i++) {
@@ -262,16 +257,33 @@ async function mis_gifos() {
 
 
 MIS_GIFS.onclick = () => {
-  if (DISPLAY_PAGINA.style.display === "block") {
-    DISPLAY_PAGINA.style.display = "none"
-    CAJAGIFS.style.display= 'block'
+  if (DISPLAY_PAGINA.style.display === "none") {
+    DISPLAY_PAGINA.style.display = "block"
+    CAJAGIFS.style.display = 'none'
   } else {
+    DISPLAY_PAGINA.style.display = "none"
+    CAJAGIFS.style.display = 'block'
+  }
+}
+IMAGEN.onclick = () => {
+  if (DISPLAY_PAGINA.style.display === "none") {
     DISPLAY_PAGINA.style.display = "block"
     CAJAGIFS.style.display = 'none'
   }
 }
-IMAGEN.onclick= () =>{
-  if (DISPLAY_PAGINA.style.display === "none") {
-  DISPLAY_PAGINA.style.display = "block"
-  CAJAGIFS.style.display = 'none'}
+inputBusqueda.addEventListener('input', () => {
+  document.documentElement.style.setProperty("--boton-busqueda", "var(--rosa-claro)");
+  var valorDeBusqueda = inputBusqueda.value;
+  Sugerencias(valorDeBusqueda)
+})
+
+async function link_azul(busqueda) {
+  let botones_azules = await fetch(`https://api.giphy.com/v1/tags/related/${busqueda}?api_key=DQJpDh63TYm4J3o2SoYclH8EqphK1EK9`)
+  let boton_azul = await botones_azules.json();
+  PALABRASBUSCADAS.innerHTML = `<p class="botones_azules_recomendados">${boton_azul.data[0].name}</p> 
+    <p class="botones_azules_recomendados">${boton_azul.data[1].name}</p> 
+    <p class="botones_azules_recomendados">${boton_azul.data[2].name}</p>`
 }
+BODY.click(() => {
+  BUSQUEDASUGERIDA.fadeOut();
+})
