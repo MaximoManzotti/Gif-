@@ -31,6 +31,7 @@ if (localStorage.getItem("tema") === "Tema-Oscuro") {
   document.documentElement.style.setProperty("--boton-sugerido", "#8F8F8F")
   document.documentElement.style.setProperty("background", "var(--fondo-claro)")
   document.documentElement.style.setProperty("--boton-night", "blue")
+  document.documentElement.style.setProperty("--camara-oscura", "url(../imagenes/camera_light.svg")
 }
 
 var recorder = navigator.mediaDevices.getUserMedia(
@@ -204,7 +205,6 @@ async function mis_gifos() {
 
 DOWNLOAD.addEventListener('click', () =>{
   let blob = recorder.getBlob()
-
     invokeSaveAsDialog(blob, 'gif');
 })
 

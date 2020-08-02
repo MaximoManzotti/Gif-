@@ -46,7 +46,6 @@ function callback_tema() {
 }
 
 
-
 if (localStorage.getItem("tema") === "Tema-Oscuro") {
   callback_tema()
 }
