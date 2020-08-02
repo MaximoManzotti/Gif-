@@ -33,7 +33,7 @@ if (localStorage.getItem("tema") === "Tema-Oscuro") {
   document.documentElement.style.setProperty("--boton-night", "blue")
 }
 
-let recorder = navigator.mediaDevices.getUserMedia(
+var recorder = navigator.mediaDevices.getUserMedia(
   {
     audio: false,
     video: true
@@ -46,6 +46,10 @@ let recorder = navigator.mediaDevices.getUserMedia(
     hidden: 240,
     frameRate: 3,
   });
+  BOTON_CAPTURAR.onclick = startRecording;
+  video.srcObject = mediaStream
+  video.play()
+});
   
 BOTON_COMENZAR.addEventListener('click', function () {
   ELIMINAR_CAJA.style.setProperty("display", "none")
@@ -56,14 +60,7 @@ BOTON_COMENZAR.addEventListener('click', function () {
 
 
 
-  navigator.mediaDevices.getUserMedia(
-    {
-      audio: false,
-      video: true,
-
-
-    }
-  ).then(function (mediaStream) {
+ recorder.then(function (mediaStream) {
 
     let video = document.getElementById("video")
     video.srcObject = mediaStream
@@ -125,31 +122,7 @@ function startRecording() {
 }
 
 
-navigator.mediaDevices.getUserMedia(
-  {
-    audio: false,
-    video: true
-  }
-).then(function (mediaStream) {
-  let video = document.getElementById("video")
 
-   recorder = RecordRTC(mediaStream, {
-    type: 'gif',
-    quality: 10,
-    width: 360,
-    hidden: 240,
-    frameRate: 3,
-  });
-  
-  BOTON_CAPTURAR.onclick = startRecording;
-  video.srcObject = mediaStream
-  video.play();
-
-}).catch(function (err) {
-
-  console.log(err)
-  alert("error")
-});
 
 var buttonSubir = document.getElementById("subir")
 
@@ -233,7 +206,7 @@ DOWNLOAD.addEventListener('click', () =>{
   let blob = recorder.getBlob()
 
     invokeSaveAsDialog(blob, 'gif');
-})})
+})
 
 COPY.addEventListener('click', ()=>{copiar(localStorage.getItem(`datos`))})
 

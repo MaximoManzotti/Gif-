@@ -17,7 +17,9 @@ const DISPLAY_PAGINA = document.getElementById('cambiardisplay')
 const CAJAGIFS = document.getElementById('mis-gifs')
 const IMAGEN = document.getElementById('boton-imagen')
 const PALABRASBUSCADAS = document.getElementById('palabras_buscadas')
-const BODY = document.getElementById('body')
+const CAJA_SUMMIT = document.getElementById('caja-summit')
+const LETRAS_BUSCAR = document.getElementById("txt_buscar")
+const LUPA_GRIS = document.getElementById("lupadefondo")
 
 boton.addEventListener('click', function () {
   if (menu_desplegable.classList.contains('menu_desplegable_none')) {
@@ -40,7 +42,7 @@ function callback_tema() {
   document.documentElement.style.setProperty("--boton-night", "blue")
   document.documentElement.style.setProperty("--boton-day", "#CCCCCC")
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo_dark.png)");
-
+  document.documentElement.style.setProperty("--lupa-negra", "url(../imagenes/lupa_light.svg)");
 }
 
 
@@ -63,6 +65,7 @@ tema_claro.addEventListener('click', function () {
   document.documentElement.style.setProperty("--logo-azul", "url(../imagenes/gifOF_logo.png)")
   document.documentElement.style.setProperty("--boton-day", "var(--rosa-claro)")
   document.documentElement.style.setProperty("--boton-night", "#F0F0F0")
+  document.documentElement.style.setProperty("--lupa-negra", "url(../imagenes/lupa.svg)")
 
   localStorage.setItem("tema", "Tema-Claro")
 
@@ -206,27 +209,32 @@ async function cargarDatos(busqueda) {
                           <p class="titulo-de-gif">#${texto_final.replace('"', '')}</p>
                      </div>
                    </div>`
-    TEXTO_BUSQUEDA.innerHTML = `<p class=busqueda">${sessionStorage.getItem("busqueda")}</p>`
+    TEXTO_BUSQUEDA.innerHTML = `<p class="busqueda">${sessionStorage.getItem("busqueda")}</p>`
     contendorRANDOM.innerHTML = html;
   }
 }
-botonDeBusqueda.onclick = () => {
+CAJA_SUMMIT.onclick = () => {
+  CAJA_SUMMIT.style.setProperty("background", "var(--boton-sugerido)")
+  LETRAS_BUSCAR.style.setProperty("color", "var(--gris-lupa)")
+  document.documentElement.style.setProperty("--lupa-gris", "url(../imagenes/lupa_inactive.svg)");
   var valorDeBusqueda = inputBusqueda.value;
   link_azul(valorDeBusqueda)
   cargarDatos(valorDeBusqueda)
   sessionStorage.setItem("busqueda", inputBusqueda.value)
+  BUSQUEDASUGERIDA.style.setProperty("display", "none")
+ 
 }
-async function Sugerencias(busqueda) {
-  let response = await fetch(`https://api.giphy.com/v1/tags/related/${busqueda}?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=&lang=es`)
-  let busquedasugerida = await response.json();
-  try {
-    BUSQUEDASUGERIDA.innerHTML = `<button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[1].name}</button>
+  async function Sugerencias(busqueda) {
+    let response = await fetch(`https://api.giphy.com/v1/tags/related/${busqueda}?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=&lang=es`)
+    let busquedasugerida = await response.json();
+    try {
+       BUSQUEDASUGERIDA.innerHTML = `<button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[1].name}</button>
        <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[2].name}</button>
        <button class="texto-cajagrisdesplegable" id="botoncajagris">${busquedasugerida.data[3].name}</button>`
-  } catch (error) {
-    console.log('error')
+    } catch (error) {
+      console.log('error')
+    }
   }
-}
 
 
 async function mis_gifos() {
@@ -273,17 +281,23 @@ IMAGEN.onclick = () => {
 }
 inputBusqueda.addEventListener('input', () => {
   document.documentElement.style.setProperty("--boton-busqueda", "var(--rosa-claro)");
+  CAJA_SUMMIT.style.setProperty("background", "var(--rosa-claro)")
   var valorDeBusqueda = inputBusqueda.value;
   Sugerencias(valorDeBusqueda)
+  BUSQUEDASUGERIDA.style.setProperty("padding-top", "1em")
+  CAJA_SUMMIT.style.setProperty("background", "var(--rosa-claro)")
+  CAJA_SUMMIT.style.setProperty("border-width", "1px")
+  LETRAS_BUSCAR.style.setProperty("color", "var(--fuente-clara)")
+  document.documentElement.style.setProperty("--lupa-gris", "var(--lupa-negra)");
+  // CAJA_SUMMIT.addEventListener('click',()=>{
+  //    setTimeout( ()=>{  CAJA_SUMMIT.style.setProperty("border-width", "1px"), 100})
+  //   CAJA_SUMMIT.style.setProperty("border-width", "0px")})
 })
 
 async function link_azul(busqueda) {
   let botones_azules = await fetch(`https://api.giphy.com/v1/tags/related/${busqueda}?api_key=DQJpDh63TYm4J3o2SoYclH8EqphK1EK9`)
   let boton_azul = await botones_azules.json();
-  PALABRASBUSCADAS.innerHTML = `<p class="botones_azules_recomendados">${boton_azul.data[0].name}</p> 
+    PALABRASBUSCADAS.innerHTML = `<p class="botones_azules_recomendados">${boton_azul.data[0].name}</p> 
     <p class="botones_azules_recomendados">${boton_azul.data[1].name}</p> 
     <p class="botones_azules_recomendados">${boton_azul.data[2].name}</p>`
 }
-BODY.click(() => {
-  BUSQUEDASUGERIDA.fadeOut();
-})
