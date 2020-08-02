@@ -178,7 +178,7 @@ async function Tendencias() {
 
 async function cargarDatos(busqueda) {
 
-  let response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=${busqueda}&limit=15&offset=0&rating=G&lang=es`)
+  let response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=${busqueda}&limit=50&offset=0&rating=G&lang=es`)
 
   let gifs = await response.json();
   var html = ""
