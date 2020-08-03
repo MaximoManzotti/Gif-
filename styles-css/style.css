@@ -40,12 +40,7 @@ body{
   margin-left: 4em !important;
   margin-right: 4em !important;
 }
-.buscador_gris:focus .buscar{
-  color: var(--gris-lupa);
-}
-.buscar{
-  color: var(--gris-lupa);
-}
+
 .texto_inicio {
   bottom: 9px;
   right: 8px;
@@ -103,6 +98,7 @@ button:focus{
   border: solid;
   border-width: 1px;
   border-color: gray;
+  height: 22.5px;
 }
 .caja-de-crear:hover{
   background-color: var(--rosa-active);
@@ -191,15 +187,25 @@ button:focus{
 }
 .caja-boton-tema{
   background: var(--rosa-claro);
-  margin: 0px 1em;
-  height: 34px;
-  font-family:'ChakraPetch-Regular';
+  margin: 1px 1em;
+  height: 33px;
+  display: flex;
+  justify-content: space-between;
+  width: 8.76em;
+  font-family: 'ChakraPetch-Regular';
   font-size: 1em;
-  padding: 0px;
   box-shadow: -1px -1px 0px 0px white;
   border: solid;
-    border-width: 1px;
-    border-color: gray;
+  border-width: 1px;
+  border-color: gray;
+  text-decoration: none;
+  color: var(--fuente-clara);
+  bottom: 0.7em;
+  position: relative;
+  list-style: none;
+  padding-left: 6px;
+  padding-top: 5px;
+  margin-top: 12px;
   
 }
 .caja-boton-tema:hover{
@@ -212,13 +218,8 @@ button:focus{
   border-width: 1px;
 }
 .boton-tema {
-  text-decoration: none;
-  color: var(--fuente-clara);
-  bottom: 0.5em;
-  position: relative;
-  list-style: none;
-  margin: 12px;
- 
+
+
 }
 
 
@@ -255,8 +256,10 @@ button:focus{
   list-style: none;
   position: relative;
   padding: 0.7em;
-   border: groove;
-   border-width: 0px 0px 0px 1px;
+  margin-top: -5px;
+  border: groove;
+  border-width: 0px 0px 0px 1px;
+  padding-right: 8px;
 }
 .flecha:active{
   border-color: black;
@@ -264,7 +267,7 @@ button:focus{
 .menu_desplegable {
   BACKGROUND-COLOR: var(--boton-sugerido) ;
   width: 8.7em;
-  margin: 0px 0px 0px 1em;
+  margin: -13px 0px 0px 1em;
 }
 .menu_desplegable_none{
   display: none;
@@ -328,12 +331,11 @@ border-color: black;}
 
 .boton-lupa{
   display: inline-flex;
-  
   border-width: 0px;
   padding: 0px;
   height: 19px;
   background-color: transparent;
- 
+  color: var(--gris-lupa);
 }
 p.busqueda {
   margin: 0px;
@@ -489,9 +491,7 @@ p.botones_azules_recomendados {
   border-color: white black black;
   border-width: 1px;
 }
-div#txt_buscar {
-  MARGIN-LEFT: 8px;
-}
+
 /*-----------pagina gif---------------*/
  .fas{
    color: var(--fuente-clara);

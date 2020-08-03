@@ -18,7 +18,6 @@ const CAJAGIFS = document.getElementById('mis-gifs')
 const IMAGEN = document.getElementById('boton-imagen')
 const PALABRASBUSCADAS = document.getElementById('palabras_buscadas')
 const CAJA_SUMMIT = document.getElementById('caja-summit')
-const LETRAS_BUSCAR = document.getElementById("txt_buscar")
 const LUPA_GRIS = document.getElementById("lupadefondo")
 
 boton.addEventListener('click', function () {
@@ -178,7 +177,7 @@ async function Tendencias() {
 
 async function cargarDatos(busqueda) {
 
-  let response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=${busqueda}&limit=50&offset=0&rating=G&lang=es`)
+  let response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=KSRFihSLXt224ZjBa5gK4SUm9msngCqt&q=${busqueda}&limit=30&offset=0&rating=G&lang=es`)
 
   let gifs = await response.json();
   var html = ""
@@ -214,7 +213,7 @@ async function cargarDatos(busqueda) {
 }
 CAJA_SUMMIT.onclick = () => {
   CAJA_SUMMIT.style.setProperty("background", "var(--boton-sugerido)")
-  LETRAS_BUSCAR.style.setProperty("color", "var(--gris-lupa)")
+  botonDeBusqueda.style.setProperty("color", "var(--gris-lupa)")
   document.documentElement.style.setProperty("--lupa-gris", "url(../imagenes/lupa_inactive.svg)");
   var valorDeBusqueda = inputBusqueda.value;
   link_azul(valorDeBusqueda)
