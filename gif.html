@@ -14,7 +14,8 @@
 
 <body>
     <header>
-        <p class="texto_inicio">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas:12.765.803</p>
+        <p class="texto_inicio">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de
+            visitas:12.765.803</p>
     </header>
     <div class="margenes-gif">
         <section class="botones-y-logo">
@@ -37,7 +38,7 @@
                 <div class="fondo-gris" id="caja-fondo-gris">
                     <div id="eliminar-caja" class="eliminar-caja">
                         <div class="contenedor-logo-texto-cuadrado" id="caja-de-crear-gif">
-                        <a src="./imagenes/window img.png" alt="window imagen" class="logo-cuadrado"></a>
+                            <img src="./imagenes/window-img.png" alt="window imagen" class="logo-cuadrado">
                             <p class="propios-gif">Aquí podrás crear tus propios guifos</p>
                         </div>
                         <div class="texto-de-crear-gif">
@@ -63,11 +64,13 @@
                         <div>
                             <div id="cajavideoybotonesfinal">
                                 <video id="video" class="pantalla-video"></video>
-                                <img alt="no video preview" id="preview" class="video-preview"></img>
+                                <img src="nada" alt="no video preview" id="preview" class="video-preview">
                                 <div id="botonesfinal">
                                     <p class="final-de-subida-texto">Guifo creado con éxito</p>
-                                    <button class="final-de-subida-botoncopiar" id="copiar_enlace">Copiar Enlace Guifo</button>
-                                    <button class="final-de-subida-botondescargar" id="descargar">Descargar Guifo</button>
+                                    <button class="final-de-subida-botoncopiar" id="copiar_enlace">Copiar Enlace
+                                        Guifo</button>
+                                    <button class="final-de-subida-botondescargar" id="descargar">Descargar
+                                        Guifo</button>
                                 </div>
                             </div>
                             <div class="caja-listo">
@@ -75,22 +78,26 @@
                             </div>
                         </div>
                         <div class="caja_boton_capturar" id="caja-del-boton-capturar">
-                            <button class="capturar" id="boton-capturar">
+                            <div class="capturar" id="boton-capturar">
                                 <div class="camara"></div>
 
                                 <p class="txt-capturar">Capturar</p>
-                            </button>
+                            </div>
                         </div>
                     </div>
                     <div class="caja_boton_grabar" id="caja-del-boton-grabar">
                         <div id="contador" class="contador-numero"></div>
-                        <button class="grabar" id="boton-grabar"><img class="imagen_grabar"
-                                src="./imagenes/recording.svg"><p class="txt_listo">Listo</p></button>
+                        <div class="grabar" id="boton-grabar"><img class="imagen_grabar" src="./imagenes/recording.svg"
+                                alt="recording">
+                            <p class="txt_listo">Listo</p>
+                        </div>
                     </div>
 
                     <div class="subir-gif" id="caja-subir-gif">
-                        <a href="./gif.html" type="button" id="rehacer" class="Repetir-captura">Repetir Captura</a>
-                        <button type="button" id="subir" class="boton-subir-gif">subir</button>
+                        <a href="./gif.html" id="rehacer" class="Repetir-captura">Repetir Captura</a>
+                        <div id="subir" class="boton-subir-gif">
+                            subir
+                        </div>
                     </div>
                     <div class="caja-subiendo" id="id-caja-subiendo">
                         <div class="caja-prefinalizacion">
@@ -107,18 +114,16 @@
                                     </div>
                                 </div>
                                 <div class="caja-del-boton-cancelar">
-                                    <a type="button" href="./Index.html" class="cancelar-subida">Cancelar</a>
+                                    <a href="./Index.html" class="cancelar-subida">Cancelar</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
+              </div>
+            
+        </section>
     </div>
-    </div>
-
-    </section>
     <section>
         <p class="mis-gifos">Mis Gifos</p>
         <div id='contenedor-mis-gifos' class="caja-de-gif-subidos">
@@ -126,8 +131,7 @@
 
     </section>
 
-    </div>
-    </div>
+ 
 
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
 

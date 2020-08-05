@@ -286,6 +286,7 @@ button:focus{
   background: var(--lupa-gris);
   width: 1em;
   height: 1em;
+  background-repeat: no-repeat;
 }
 .buscador {
   background-color: var(--boton-sugerido);
@@ -320,12 +321,12 @@ p.gradiente_buscador {
     height: 1.1em;
     padding: 0.2em 0.9em 1.2px 0.9em;
     outline: solid;
-    outline-color: lightgrey;
+    outline-color: var(--gris-lupa);
+    outline-width: 1px;
     margin: 0.5em 1em;
   
 
 }.caja_boton_summit:active{
-border: solid;
 border-width: 0px;
 border-color: black;}
 
@@ -588,7 +589,7 @@ p.botones_azules_recomendados {
   background-color: var(--rosa-claro);
   width: 143px;
   font-family: 'ChakraPetch Regular';
-  color: black;
+  color: var(--fuente-clara);
   border: groove;
   border-width: 1px;
   display: grid;
@@ -714,7 +715,7 @@ p.txt-capturar {
 }
 .boton-subir-gif{
   background-color: var(--rosa-claro);
-  width: 143px;
+  width: 25px;
   font-family: 'ChakraPetch Regular';
   color: var(--fuente-clara);
   border: solid;
@@ -900,8 +901,8 @@ img.mis-gif-subidos{
 }
 p.mis-gifos-pagina {
   font-family: 'Chakra Petch', sans-serif;
-  background-color: var(--rosa-claro);
-  color: var(--fuente-clara);
+  background-color: white;
+    color: black;
   border: inset;
   font-weight: 14px;
   width: 83.5%;

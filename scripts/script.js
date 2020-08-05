@@ -217,8 +217,8 @@ CAJA_SUMMIT.onclick = () => {
   document.documentElement.style.setProperty("--lupa-gris", "url(../imagenes/lupa_inactive.svg)");
   var valorDeBusqueda = inputBusqueda.value;
   link_azul(valorDeBusqueda)
-  cargarDatos(valorDeBusqueda)
-  sessionStorage.setItem("busqueda", inputBusqueda.value)
+ 
+  
   BUSQUEDASUGERIDA.style.setProperty("display", "none")
  
 }
@@ -278,15 +278,18 @@ IMAGEN.onclick = () => {
   }
 }
 inputBusqueda.addEventListener('input', () => {
+  cargarDatos(valorDeBusqueda)
+  sessionStorage.setItem("busqueda", inputBusqueda.value)
   document.documentElement.style.setProperty("--boton-busqueda", "var(--rosa-claro)");
   CAJA_SUMMIT.style.setProperty("background", "var(--rosa-claro)")
+  document.documentElement.style.setProperty("--lupa-gris", "var(--lupa-negra)");
   var valorDeBusqueda = inputBusqueda.value;
   Sugerencias(valorDeBusqueda)
   BUSQUEDASUGERIDA.style.setProperty("padding-top", "1em")
   CAJA_SUMMIT.style.setProperty("background", "var(--rosa-claro)")
   CAJA_SUMMIT.style.setProperty("border-width", "1px")
-  LETRAS_BUSCAR.style.setProperty("color", "var(--fuente-clara)")
-  document.documentElement.style.setProperty("--lupa-gris", "var(--lupa-negra)");
+  botonDeBusqueda.style.setProperty('color', 'var(--fuente-clara)')
+  
   // CAJA_SUMMIT.addEventListener('click',()=>{
   //    setTimeout( ()=>{  CAJA_SUMMIT.style.setProperty("border-width", "1px"), 100})
   //   CAJA_SUMMIT.style.setProperty("border-width", "0px")})
