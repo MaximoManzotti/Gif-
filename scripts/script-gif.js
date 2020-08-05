@@ -61,7 +61,7 @@ BOTON_COMENZAR.addEventListener('click', function () {
 
 
 
- recorder.then(function (mediaStream) {
+ recorder(function (mediaStream) {
 
     let video = document.getElementById("video")
     video.srcObject = mediaStream
