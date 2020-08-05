@@ -629,7 +629,7 @@ p.txt-capturar {
   padding-left: 5px;
   margin: 0px;
   margin-top: 5px;
-  margin-right: 7px;
+  margin-right: 19px;
 }
 .capturar:hover{
   background-color: var(--rosa-active);
@@ -649,11 +649,13 @@ p.txt-capturar {
   border-color: transparent var(--fuente-clara) transparent transparent;
   padding-right: 10px;
   margin: px 0px 0px 0px;
-  width: 17px;
-  height: 1.7em;
+  width: 21px;
+  height: 31px;
   background-size: 21px;
   background-repeat: no-repeat;
   background-position-y: center;
+  margin: 0px 9px 0px;
+
 }
 .caja_boton_capturar{
   justify-content: flex-end;
@@ -671,7 +673,7 @@ p.txt-capturar {
 }
 .grabar{
   background-color: var(--rojo-grabar);
-  width: 144px;
+  width: 114px;
   height: 27px;
   margin-left: 16px;
   margin-right: 16px;
@@ -838,6 +840,7 @@ a.cancelar-subida {
 .txt_listo{
   margin-top: 15px;
   color: white;
+  margin-left: 21px;
 }
 .caja-listo{
   justify-content: end;
